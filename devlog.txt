@@ -1,0 +1,6 @@
+sophiaC -- 2025-11-26 23:05
+CREATE USER LOGIN
+Task: "At minimum, your database component will facilitate user accounts."
+Add all necessary files
+Create .html files 
+Wrote necessary code in __init__.py to run login, logout, createaccount along with a database

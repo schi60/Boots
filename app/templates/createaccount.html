@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<!--
+    Boots
+    SoftDev 2025
+-->
+
+<html>
+<head>
+    <title> Create Account </title>
+</head>
+<body>
+
+    <h1> Create Account </h1>
+		
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          {{message}}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+		
+    <form action="/createaccount" method="POST">
+    <input type="text" name="username" placeholder = "username" required >  <br> <br> 
+
+      <input type="password" name="password" placeholder = "password" required> <br> <br>
+		 
+		 <input type="submit" value = "Create Account" >
+    </form>
+   <br>
+        <div>
+            <a href="/" style= "text-decoration: none;">
+                ← Return to homepage 
+            </a>
+			  <br>
+            <a href="/login">
+                Already have an account? Login
+            </a>
+        </div>
+</body>
+</html>
