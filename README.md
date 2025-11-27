@@ -1,4 +1,4 @@
-# <Project Name> by Boots
+# {Project Name} by Boots
 
 # Roster:
 <br>
