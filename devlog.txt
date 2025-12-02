@@ -4,3 +4,6 @@ sophiaC -- 2025-11-26 23:05
 
 emaanA -- 2025-11-30 00:20
 - uploading design document
+
+emaanA -- 2025-12-2 18:30 
+- uploading updated design document based on feedback from 12/1
