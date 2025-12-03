@@ -1,4 +1,4 @@
-# {Project Name} by Boots
+# Home Sweet Home by Boots
 
 # Roster:
 <br>
@@ -10,7 +10,7 @@ Jun Jie L ~ Devo 2 <br>
 
 # App Description:
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in diam pharetra, fermentum dui sit amet, mattis ipsum. Sed luctus, neque eu ultrices pretium, lorem ante ullamcorper justo, et laoreet nisl diam eget erat. Fusce quis dictum neque. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras ornare vehicula quam sed lacinia. Integer maximus ligula porta diam rutrum, nec feugiat metus fermentum. Vivamus fringilla risus id mollis vulputate. Morbi rutrum ante quis magna ullamcorper maximus. In sapien velit, feugiat vel lectus quis, aliquet volutpat turpis. Quisque elit augue, tempus sed sapien in, congue blandit lorem. In ornare sodales blandit. Donec vehicula nisl vitae est aliquet, id lobortis nunc auctor. Sed at magna est. Aliquam accumsan vestibulum turpis, vel congue ex efficitur eget.
+Home Sweet Home is a website that allows users to hang out and explore their virtual home. Each tab will represent a different room and will contain its own interactive features, operated using APIs, to explore.
 
 # Install Guide:
 Git clone repository with ```git clone https://github.com/schi60/Boots.git```
