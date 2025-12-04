@@ -7,3 +7,9 @@ emaanA -- 2025-11-30 00:20
 
 emaanA -- 2025-12-2 18:30 
 - uploading updated design document based on feedback from 12/1
+
+sophiaC -- 2025-12-3 21:51
+INITIAL DD REVIEW
+- update site map to add new relationships
+- The component map needs to be clearer, showing connections with more explanations
+- Database tables need to be updated to show relationships between tables 
