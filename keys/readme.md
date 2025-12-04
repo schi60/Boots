@@ -1,10 +1,10 @@
 ### APIs that require keys:
-- OpenWeatherAPI
 - HolidaysAPI
+- TheCatAPI
+- MoviesAPI
 
 ### APIs with no key:
 - FreeRecipeAPI
-- MoviesAPI
 - JokeAPI
 - MetMuseumAPI 
-- TheCatAPI
+
