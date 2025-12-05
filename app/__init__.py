@@ -1,13 +1,24 @@
-# Boots
-# Softdev 2025
-# p01
+# Sophia Chi, Emaan Asif, Junjie Li
+# SoftDev
+# P01
 
 from flask import Flask, render_template, request, session, redirect, url_for, flash
+from db import select_query
 
 app = Flask(__name__)
-@app.route("/")
-    return hello world
 
-if __name__ == "__main__":
-    app.debug = True
-    app.run()
+@app.route("/")
+    return
+
+
+@app.route("/home")
+    return
+
+@app.route("/bedroom")
+    return
+
+@app.route("/kitchen")
+    return
+
+@app.route("/settings")
+    return 

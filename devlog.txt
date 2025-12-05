@@ -31,6 +31,13 @@ sophiaC --2025-12-04 11:00
 junjieL --2025-12-04 11:00
 - got movie api key + added it to txt file
 
-emaanA -- 2025-12-05 11:00
+emaanA --2025-12-05 11:00
 - all python module dependencies in place
 - updated readme
+- setting up routes for webpages in __init__.py
+
+sophiaC --2025-12-05 11:00
+- created all html templates
+
+junjieL --2025-12-05 11:00
+- working on build_db.py and auth.py
