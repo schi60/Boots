@@ -14,15 +14,19 @@ When you enter the website, you will end up on the house's front lawn. To unlock
 
 
 # Install Guide:
-Git clone repository with ```git clone https://github.com/schi60/Boots.git```
+#### Prerequisites
+- python 3 installed
+- git installed
 
-Navigate to the root directory with ```cd Boots``` and install requirements with:
-```pip install -r requirements.txt```
+```
+git clone https://github.com/schi60/Boots.git
+cd Boots
+pip install -r requirements.txt
+```
 
 # Launch Codes: 
-
-Navigate to the root directory with ```cd Boots```:
-
-``` cd app ```
-
-```python __init__.py```
+```
+cd Boots
+cd app 
+python __init__.py
+```
