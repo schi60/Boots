@@ -3,7 +3,6 @@
 # P01
 
 from flask import Flask, render_template, request, flash, redirect, session, url_for
-from db import select_query, insert_query, general_query
 
 app = Flask(__name__)
 
