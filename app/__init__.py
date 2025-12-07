@@ -17,6 +17,22 @@ def check_authentification():
         return redirect(url_for("auth.login_get"))
 
 # displays all blogs
-@app.get('/')
+@app.get('/home')
 def home_get():
     return render_template('frontlawn.html')
+
+@app.get('/bedroom')
+def bedroom_get():
+    return render_template('bedroom.html')
+
+@app.get('/kitchen')
+def kitchen_get():
+    return render_template('kitchen.html')
+
+@app.get('/livingRoom')
+def livingRoom_get():
+    return render_template('livingRoom.html')
+
+@app.get('/settings')
+def settings_get():
+    return render_template('settings.html')
