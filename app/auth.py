@@ -1,46 +1,49 @@
-import sqlite3
-import random
+# Sophia Chi, Emaan Asif, Jun Jie Li
+# SoftDev
+# P01
+# Dec 2025
 
-DB_FILE = "data.db"
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash
+from db import select_query, insert_query
+from werkzeug.security import generate_password_hash, check_password_hash
 
-#check for user_id in data
-def user_exists(username):
-    db = sqlite3.connect(DB_FILE)
-    c = db.cursor()
-    c.execute("SELECT * FROM user WHERE user_id = ?", (username,))
-    result = c.fetchone() != None
-    db.close()
-    return result
+bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-#check for right password in data
-def login(username, password):
-    db = sqlite3.connect(DB_FILE)
-    c = db.cursor()
-    c.execute("SELECT password FROM user where user_id = ?", (username,))
-    pw = c.fetchone()[0]
-    db.close()
-    return pw == password
+@bp.get('/register')
+def signup_get():
+    return render_template('auth/register.html')
 
-#checks if username already in data
-def user_exists(username):
-    db = sqlite3.connect(DB_FILE)
-    c = db.cursor()
-    c.execute("SELECT * FROM user WHERE user_id = ?", (username,))
-    result = c.fetchone() != None
-    db.close()
-    return result
+@bp.post('/signup')
+def signup_post():
+    username = request.form.get('username')
+    password = request.form.get('password')
+    if len(select_query("SELECT * FROM profiles WHERE username=?", [username])) != 0:
+        flash('Username already exists.', 'error')
+        return redirect(url_for('auth.signup_get'))   
+    hashed_password = generate_password_hash(password)
+    insert_query("profiles", {"username": username, "password": hashed_password})
+    flash('Sign up successful! Please log in.', 'success')
+    return redirect(url_for('auth.login_get'))
 
-#registers (fails if user already exists, is empty)
-def register(username, password):
-    db = sqlite3.connect(DB_FILE)
-    c = db.cursor()
-    if (username.strip() == "" or password.strip() == ""):
-        db.close()
-        return "Username or password cannot be empty."
-    if user_exists(username):
-        db.close()
-        return "Username is already taken."
-    c.execute("INSERT INTO user (user_id, password) VALUES (?, ?)", (username, password))
-    db.commit()
-    db.close()
-    return "Registered"
+@bp.get('/login')
+def login_get():
+    return render_template('auth/login.html')
+
+@bp.post('/login')
+def login_post():
+    username = request.form.get('username')
+    password = request.form.get('password')
+    rows = select_query("SELECT * FROM profiles WHERE username=?", [username])
+    if len(rows) != 0 and check_password_hash(rows[0]['password'], password):
+        session['username'] = username
+        flash(f'Welcome back, {username}!', 'success')
+        return redirect(url_for('home_get'))
+    else:
+        flash('Invalid username or password.', 'error')
+        return redirect(url_for('auth.login_get'))
+
+@bp.get('/logout')
+def logout_get():
+    session.pop('username', None)
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('auth.login_get'))

@@ -1,0 +1,20 @@
+<!--
+    Sophia Chi, Emaan Asif, Jun Jie Li
+    SoftDev 2025
+    P01
+  -->
+    
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Sign Up</h1>
+
+<form action="/auth/signup" method="post">
+  <input type="text" name="username" placeholder="Username" required><br>
+  <input type="password" name="password" placeholder="Password" required><br>
+  <input type="submit" value="Sign Up">
+</form>
+
+</div>
+
+{% endblock %}
