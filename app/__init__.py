@@ -6,6 +6,7 @@ from flask import Flask, render_template, request, flash, redirect, session, url
 from db import select_query, insert_query, general_query
 
 app = Flask(__name__)
+app.secret_key = "edkasifjdsufh"
 
 import auth
 app.register_blueprint(auth.bp)
@@ -16,8 +17,7 @@ def check_authentification():
         flash("Please log in to view our website", "error")
         return redirect(url_for("auth.login_get"))
 
-# displays all blogs
-@app.get('/home')
+@app.get('/')
 def home_get():
     return render_template('frontlawn.html')
 
@@ -36,3 +36,6 @@ def livingRoom_get():
 @app.get('/settings')
 def settings_get():
     return render_template('settings.html')
+    
+if __name__ == '__main__':
+    app.run(debug=True)

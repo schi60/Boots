@@ -9,7 +9,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-@bp.get('/register')
+@bp.get('/signup')
 def signup_get():
     return render_template('auth/register.html')
 
