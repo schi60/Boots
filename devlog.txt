@@ -41,3 +41,11 @@ sophiaC --2025-12-05 11:00
 
 junjieL --2025-12-05 11:00
 - working on build_db.py and auth.py
+
+emaanA --2025-12-07 18:30 
+- working app in place
+- fixed up auth.py 
+- created routes for all html pages
+- added all html files to templates
+- fixed login.html, created register.html
+- created db.py
