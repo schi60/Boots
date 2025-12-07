@@ -28,5 +28,6 @@ pip install -r requirements.txt
 ```
 cd Boots
 cd app 
+python build_db.py
 python __init__.py
 ```
