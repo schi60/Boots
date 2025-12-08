@@ -49,3 +49,9 @@ emaanA --2025-12-07 18:30
 - added all html files to templates
 - fixed login.html, created register.html
 - created db.py
+
+sophiaC --2025-12-07 20:30
+- added code to frontlawn.html
+
+junjieL --2025-12-07 21:00
+- fixed route to /logout
