@@ -4,6 +4,7 @@
 
 from flask import Flask, render_template, request, flash, redirect, session, url_for
 from db import select_query, insert_query, general_query
+import sqlite3
 
 app = Flask(__name__)
 app.secret_key = "edkasifjdsufh"
@@ -11,7 +12,7 @@ app.secret_key = "edkasifjdsufh"
 import auth
 app.register_blueprint(auth.bp)
 
-@app.before_request
+@app.get('/login')
 def check_authentification():
     if 'username' not in session.keys() and request.blueprint != 'auth' and request.endpoint != 'static':
         flash("Please log in to view our website", "error")
@@ -36,6 +37,10 @@ def livingRoom_get():
 @app.get('/settings')
 def settings_get():
     return render_template('settings.html')
+	
+@app.get('/register')
+def sign_up():
+    return render_template('/auth/register.html')
     
 if __name__ == '__main__':
     app.run(debug=True)
