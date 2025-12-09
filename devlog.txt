@@ -63,3 +63,10 @@ emaanA --2025-12-08 11:00
 
 sophiaC --2025-12-08 20:09
 - Update README.md and Design Document to new idea
+
+sophiaC --2025-12-09 11:00
+- updating design document 
+
+emaanA --2025-12-09 11:00
+- moved keys dir into app dir 
+- working on api loading mech, keys already in place

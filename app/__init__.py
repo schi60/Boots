@@ -29,7 +29,7 @@ def bedroom_get():
     return render_template('bedroom.html')
 
 #kitchen
-with open('../keys/key_HolidaysAPI.txt') as file:
+with open('keys/key_HolidaysAPI.txt') as file:
     api_key = file.read()
 
 @app.get('/kitchen')
@@ -40,15 +40,15 @@ def kitchen_get():
     return render_template('kitchen.html',image_link=data["hdurl"], explanation=data["explanation"])
 
 #livingRoom
-with open('../keys/key_MoviesAPI.txt') as file:
+with open('keys/key_MoviesAPI.txt') as file:
     api_key0 = file.read()
 
-with open('../keys/key_TheCatAPI.txt') as file:
+with open('keys/key_TheCatAPI.txt') as file:
     api_key1 = file.read()
 
 @app.get('/livingRoom')
 def livingRoom_get():
-    with urllib.request.urlopen(f'{api_key}') as response:
+    with urllib.request.urlopen(f'https://www.omdbapi.com/?s={api_key}') as response:
        data = response.read()
     data = json.loads(data)
 
