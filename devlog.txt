@@ -60,3 +60,6 @@ junjieL --2025-12-07 21:00
 
 emaanA --2025-12-08 11:00
 - trying to get api's to work; specifically those with keys
+
+sophiaC --2025-12-08 20:09
+- Update README.md and Design Document to new idea
