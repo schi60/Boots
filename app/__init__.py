@@ -4,7 +4,7 @@
 
 from flask import Flask, render_template, request, flash, redirect, session, url_for
 from db import select_query, insert_query, general_query
-import sqlite3, urllib, json
+import urllib.request, json
 
 app = Flask(__name__)
 app.secret_key = "edkasifjdsufh"
@@ -18,7 +18,7 @@ def check_authentification():
         flash("Please log in to view our website", "error")
         return redirect(url_for("auth.login_get"))
 
-#home
+#frontlawn
 @app.get('/')
 def home_get():
     return render_template('frontlawn.html')
@@ -26,46 +26,75 @@ def home_get():
 #bedroom
 @app.get('/bedroom')
 def bedroom_get():
-    return render_template('bedroom.html')
+    #jokeAPI
+    with urllib.request.urlopen("https://v2.jokeapi.dev/joke/Any") as response:
+        jokeData = json.loads(response.read())
+    if jokeData.get("type") == "single":
+        jokeText = jokeData.get("joke")
+    else:
+        jokeText = f"{jokeData.get('setup')} - {jokeData.get('delivery')}"
+
+    #metAPI
+    with urllib.request.urlopen("https://collectionapi.metmuseum.org/public/collection/v1/search?q=cat") as response:
+        metData = json.loads(response.read())
+    metObject = {}
+    if metData.get("objectIDs"):
+        objectId = metData["objectIDs"][0]
+        objectUrl = f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{objectId}"
+        with urllib.request.urlopen(objectUrl) as response:
+            metObject = json.loads(response.read())
+
+    return render_template('bedroom.html', joke=jokeText, met_item=metObject)
 
 #kitchen
-with open('keys/key_HolidaysAPI.txt') as file:
-    api_key = file.read()
+with open('keys/key_HolidaysApi.txt') as file:
+    holidaysKey = file.read().strip()
 
 @app.get('/kitchen')
 def kitchen_get():
-    with urllib.request.urlopen(f'{api_key}') as response:
-        data = response.read()
-    data = json.loads(data)
-    return render_template('kitchen.html',image_link=data["hdurl"], explanation=data["explanation"])
+    #freeRecipeAPI
+    recipeUrl = "https://www.themealdb.com/api/json/v1/1/random.php"
+    with urllib.request.urlopen(recipeUrl) as response:
+        recipesData = json.loads(response.read())
+    return render_template('kitchen.html', recipes=recipesData)
+'''
+    #holidaysAPI
+    holidaysUrl =  f'https://holidays.abstractapi.com/v1/?api_key={holidaysKey}&country=US&year=2025'
+    with urllib.request.urlopen(holidaysUrl) as response:
+        holidaysData = json.loads(response.read())
 
+    return render_template('kitchen.html', recipes=recipesData, holidays=holidaysData)
+'''
+    
 #livingRoom
 with open('keys/key_MoviesAPI.txt') as file:
-    api_key0 = file.read()
+    movieKey = file.read().strip()
 
 with open('keys/key_TheCatAPI.txt') as file:
-    api_key1 = file.read()
+    catKey = file.read().strip()
 
 @app.get('/livingRoom')
 def livingRoom_get():
-    with urllib.request.urlopen(f'https://www.omdbapi.com/?s={api_key}') as response:
-       data = response.read()
-    data = json.loads(data)
+    #movieAPI
+    movie_url = f"https://www.omdbapi.com/?apikey={movieKey}&s=mystery"
+    with urllib.request.urlopen(movie_url) as response:
+        movies = json.loads(response.read())
+    cat_url = "https://api.thecatapi.com/v1/images/search?has_breeds=1"
+    cat_request = urllib.request.Request(cat_url, headers={"x-api-key": catKey})
 
-    with urllib.request.urlopen(f'{api_key}') as response:
-       data = response.read()
-    data = json.loads(data)
-    return render_template('livingRoom.html',image_link=data["hdurl"], explanation=data["explanation"])
+    #catAPI
+    with urllib.request.urlopen(cat_request) as response:
+        cat_data = json.loads(response.read())
+    cat_image = None
+    if isinstance(cat_data, list) and len(cat_data) > 0:
+        cat_image = cat_data[0].get("url")
+
+    return render_template('livingRoom.html', movies=movies, cat_image=cat_image)
 
 #settings
 @app.get('/settings')
 def settings_get():
     return render_template('settings.html')
-
-#register
-@app.get('/register')
-def sign_up():
-    return render_template('/auth/register.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
