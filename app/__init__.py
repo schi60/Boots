@@ -47,8 +47,8 @@ def bedroom_get():
     return render_template('bedroom.html', joke=jokeText, met_item=metObject)
 
 #kitchen
-with open('keys/key_HolidaysApi.txt') as file:
-    holidaysKey = file.read().strip()
+#with open('keys/key_HolidaysAPI.txt') as file:
+#    holidaysKey = file.read().strip()
 
 @app.get('/kitchen')
 def kitchen_get():
@@ -65,7 +65,7 @@ def kitchen_get():
 
     return render_template('kitchen.html', recipes=recipesData, holidays=holidaysData)
 '''
-    
+
 #livingRoom
 with open('keys/key_MoviesAPI.txt') as file:
     movieKey = file.read().strip()
