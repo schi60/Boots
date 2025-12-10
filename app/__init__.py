@@ -48,7 +48,7 @@ def bedroom_get():
 
 #kitchen
 #with open('keys/key_HolidaysAPI.txt') as file:
-#    holidaysKey = file.read().strip()
+    holidaysKey = file.read().strip()
 
 @app.get('/kitchen')
 def kitchen_get():
@@ -57,14 +57,14 @@ def kitchen_get():
     with urllib.request.urlopen(recipeUrl) as response:
         recipesData = json.loads(response.read())
     return render_template('kitchen.html', recipes=recipesData)
-'''
+
     #holidaysAPI
-    holidaysUrl =  f'https://holidays.abstractapi.com/v1/?api_key={holidaysKey}&country=US&year=2025'
+    holidaysUrl =  f'https://holidays.abstractapi.com/v1/?api_key={holidaysKey}&country=US&year=2025&month=12&day=25'
     with urllib.request.urlopen(holidaysUrl) as response:
         holidaysData = json.loads(response.read())
 
     return render_template('kitchen.html', recipes=recipesData, holidays=holidaysData)
-'''
+
 
 #livingRoom
 with open('keys/key_MoviesAPI.txt') as file:
@@ -76,20 +76,20 @@ with open('keys/key_TheCatAPI.txt') as file:
 @app.get('/livingRoom')
 def livingRoom_get():
     #movieAPI
-    movie_url = f"https://www.omdbapi.com/?apikey={movieKey}&s=mystery"
-    with urllib.request.urlopen(movie_url) as response:
+    movieUrl = f"https://www.omdbapi.com/?apikey={movieKey}&s=mystery"
+    with urllib.request.urlopen(movieUrl) as response:
         movies = json.loads(response.read())
-    cat_url = "https://api.thecatapi.com/v1/images/search?has_breeds=1"
-    cat_request = urllib.request.Request(cat_url, headers={"x-api-key": catKey})
+    catUrl = "https://api.thecatapi.com/v1/images/search?has_breeds=1"
+    catRequest = urllib.request.Request(cat_url, headers={"x-api-key": catKey})
 
     #catAPI
-    with urllib.request.urlopen(cat_request) as response:
-        cat_data = json.loads(response.read())
-    cat_image = None
-    if isinstance(cat_data, list) and len(cat_data) > 0:
-        cat_image = cat_data[0].get("url")
+    with urllib.request.urlopen(catRequest) as response:
+        catData = json.loads(response.read())
+    catImage = None
+    if isinstance(catData, list) and len(catData) > 0:
+        catImage = catData[0].get("url")
 
-    return render_template('livingRoom.html', movies=movies, cat_image=cat_image)
+    return render_template('livingRoom.html', movies=movies, catImage=catImage)
 
 #settings
 @app.get('/settings')
