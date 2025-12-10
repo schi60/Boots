@@ -96,5 +96,11 @@ def livingRoom_get():
 def settings_get():
     return render_template('settings.html')
 
+
+#register
+@app.get('/register')
+def sign_up():
+    return render_template('/auth/register.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
