@@ -65,7 +65,6 @@ def kitchen_get():
 
     return render_template('kitchen.html', recipes=recipesData, holidays=holidaysData)
 
-
 #livingRoom
 with open('keys/key_MoviesAPI.txt') as file:
     movieKey = file.read().strip()
@@ -95,7 +94,6 @@ def livingRoom_get():
 @app.get('/settings')
 def settings_get():
     return render_template('settings.html')
-
 
 #register
 @app.get('/register')
