@@ -18,9 +18,20 @@ def check_authentification():
         flash("Please log in to view our website", "error")
         return redirect(url_for("auth.login_get"))
 
+
+#map
+@app.get('/map')
+def map_get():
+    return render_template('map.html')
+
+#startPage
+@app.get('/home')
+def startPage_get():
+    return render_template('startPage.html')
+
 #frontlawn
 @app.get('/')
-def home_get():
+def frontLawn_get():
     return render_template('frontlawn.html')
 
 #bedroom
@@ -90,16 +101,6 @@ def livingRoom_get():
 
     return render_template('livingRoom.html', movies=movies, catImage=catImage)
 
-#map
-@app.get('/map')
-def map_get():
-    return render_template('map.html')
-
-#startPage
-@app.get('/startPage')
-def startPage_get():
-    return render_template('startPage.html')
-    
 #settings
 @app.get('/settings')
 def settings_get():
