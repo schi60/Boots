@@ -82,4 +82,8 @@ sophiaC --2025-12-10 23:15
 
 emaanA --2025-12-11 11:00
 - still fixing holidays API (__init__.py) + kitchen.html
+- added startPage.html and map.html
+
+sophiaC --2025-12-11 11:00
+- working on navbar/links between html pages
 
