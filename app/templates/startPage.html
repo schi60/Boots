@@ -4,3 +4,19 @@
     P01
     SoftDev 2025
 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+</head>
+<h1> HOME SWEET HOME </h1>
+<body>
+		{% if session['username'] %}
+		<a href="/auth/logout"> Logout </a> |
+		{% else %}
+		<a href="/login"> Login </a> |
+		<a href="register"> Sign Up </a>
+		{% endif %}
+</body>
+
+</html>	
