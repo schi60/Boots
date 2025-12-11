@@ -90,6 +90,16 @@ def livingRoom_get():
 
     return render_template('livingRoom.html', movies=movies, catImage=catImage)
 
+#map
+@app.get('/map')
+def map_get():
+    return render_template('map.html')
+
+#startPage
+@app.get('/startPage')
+def startPage_get():
+    return render_template('startPage.html')
+    
 #settings
 @app.get('/settings')
 def settings_get():
