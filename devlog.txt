@@ -74,5 +74,8 @@ emaanA --2025-12-09 11:00
 emaanA --2025-12-09 23:10
 - API loading mech in place :D routes should load their respective apis
 
+emaanA --2025-12-10 11:00
+- fixing holidays API + kitchen.html
+
 sophiaC --2025-12-10 23:15
 - Update Design Document and site map
