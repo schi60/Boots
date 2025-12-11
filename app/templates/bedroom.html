@@ -15,10 +15,10 @@
     <p>{{ joke }}</p>
 
     <h1>Museum Item</h1>
-    {% if met_item %}
-        <p>{{ met_item.title }}</p>
-        {% if met_item.primaryImageSmall %}
-            <img src="{{ met_item.primaryImageSmall }}" alt="{{ met_item.title }}" width="200">
+    {% if metItem %}
+        <p>{{ metItem.title }}</p>
+        {% if metItem.primaryImageSmall %}
+            <img src="{{ metItem.primaryImageSmall }}" alt="{{ metItem.title }}" width="200">
         {% endif %}
     {% else %}
         <p>No museum item found.</p>

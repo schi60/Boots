@@ -35,7 +35,7 @@ def bedroom_get():
         jokeText = f"{jokeData.get('setup')} - {jokeData.get('delivery')}"
 
     #metAPI
-    with urllib.request.urlopen("https://collectionapi.metmuseum.org/public/collection/v1/search?q=cat") as response:
+    with urllib.request.urlopen("https://collectionapi.metmuseum.org/public/collection/v1/search?q=dog") as response:
         metData = json.loads(response.read())
     metObject = {}
     if metData.get("objectIDs"):
@@ -44,7 +44,7 @@ def bedroom_get():
         with urllib.request.urlopen(objectUrl) as response:
             metObject = json.loads(response.read())
 
-    return render_template('bedroom.html', joke=jokeText, met_item=metObject)
+    return render_template('bedroom.html', joke=jokeText, metItem=metObject)
 
 #kitchen
 #with open('keys/key_HolidaysAPI.txt') as file:
@@ -62,8 +62,8 @@ def kitchen_get():
     holidaysUrl =  f'https://holidays.abstractapi.com/v1/?api_key={holidaysKey}&country=US&year=2025&month=12&day=25'
     with urllib.request.urlopen(holidaysUrl) as response:
         holidaysData = json.loads(response.read())
-
-    return render_template('kitchen.html', recipes=recipesData, holidays=holidaysData)
+        holidaysText = holidaysData.get("holiday")
+    return render_template('kitchen.html', recipes=recipesData, holidays=holidaysText)
 
 #livingRoom
 with open('keys/key_MoviesAPI.txt') as file:
@@ -78,10 +78,10 @@ def livingRoom_get():
     movieUrl = f"https://www.omdbapi.com/?apikey={movieKey}&s=mystery"
     with urllib.request.urlopen(movieUrl) as response:
         movies = json.loads(response.read())
-    catUrl = "https://api.thecatapi.com/v1/images/search?has_breeds=1"
-    catRequest = urllib.request.Request(cat_url, headers={"x-api-key": catKey})
 
     #catAPI
+    catUrl = "https://api.thecatapi.com/v1/images/search?has_breeds=1"
+    catRequest = urllib.request.Request(catUrl, headers={"x-api-key": catKey})
     with urllib.request.urlopen(catRequest) as response:
         catData = json.loads(response.read())
     catImage = None

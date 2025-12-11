@@ -79,3 +79,7 @@ emaanA --2025-12-10 11:00
 
 sophiaC --2025-12-10 23:15
 - Update Design Document and site map
+
+emaanA --2025-12-11 11:00
+- still fixing holidays API (__init__.py) + kitchen.html
+
