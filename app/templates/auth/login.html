@@ -3,26 +3,38 @@
     SoftDev 2025
     P01
   -->
+<!DOCTYPE html>
 <html>
-<h1>Login</h1>
+<head>
+    <title> Login </title>
+</head>
+
 <body>
-<form action="/auth/login" method="post">
-  <input type="text" name="username" placeholder="Username" required><br>
-  <input type="password" name="password" placeholder="Password" required><br>
-  <input type="submit" value="Login">
-</form>
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-      {% for category, message in messages %}
-        <p class="flashes {{ category }}">{{ message }}</p>
-      {% endfor %}
-      {% endif %}
-    {% endwith %}
+    <h1>Login</h1>
+    
+    <form action="/auth/login" method="post">
+      <input type="text" name="username" placeholder="Username" required><br>
+      <input type="password" name="password" placeholder="Password" required><br>
+      <input type="submit" value="Login">
+    </form>
 
-    <main class="content">
-      {% block content %}
-      {% endblock %}
-    </main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+          {% for category, message in messages %}
+            <p class="flashes {{ category }}">{{ message }}</p>
+          {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <main class="content">
+          {% block content %}
+          {% endblock %}
+        </main>
+
+        <a href="/">
+           Return
+        </a>
+        
 </body>
 </html>
