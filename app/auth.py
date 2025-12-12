@@ -19,7 +19,7 @@ def signup_post():
     password = request.form.get('password')
     if len(select_query("SELECT * FROM profiles WHERE username=?", [username])) != 0:
         flash('Username already exists.', 'error')
-        return redirect(url_for('auth.signup_get'))   
+        return redirect(url_for('auth.signup_get'))
     hashed_password = generate_password_hash(password)
     insert_query("profiles", {"username": username, "password": hashed_password})
     flash('Sign up successful! Please log in.', 'success')
@@ -36,7 +36,7 @@ def login_post():
     rows = select_query("SELECT * FROM profiles WHERE username=?", [username])
     if len(rows) != 0 and check_password_hash(rows[0]['password'], password):
         session['username'] = username
-        flash(f'Welcome back, {username}!', 'success')
+        flash(f'Login {username}!', 'success')
         return redirect(url_for('map_get'))
     else:
         flash('Invalid username or password.', 'error')
@@ -46,4 +46,4 @@ def login_post():
 def logout_get():
     session.pop('username', None)
     flash('You have been logged out.', 'info')
-    return redirect(url_for('auth.login_get'))
+    return redirect(url_for('startPage_get'))
