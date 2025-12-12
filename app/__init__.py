@@ -2,7 +2,7 @@
 # SoftDev
 # P01
 
-from flask import Flask, render_template, request, flash, redirect, session, url_for
+from flask import Flask, render_template, request, flash, redirect, session, url_for, flash
 from db import select_query, insert_query, general_query
 import urllib.request, json
 
@@ -14,10 +14,9 @@ app.register_blueprint(auth.bp)
 
 @app.get('/login')
 def check_authentification():
-    if 'username' not in session.keys() and request.blueprint != 'auth' and request.endpoint != 'static':
-        flash("Please log in to view our website", "error")
+#    if 'username' not in session.keys() and request.blueprint != 'auth' and request.endpoint != 'static':
+#        flash("Please log in to view our website", "error")
         return redirect(url_for("auth.login_get"))
-
 
 #map
 @app.get('/map')
