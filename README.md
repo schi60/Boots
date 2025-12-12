@@ -22,7 +22,7 @@ When you enter the website, you will end up on the house's front lawn. To unlock
 ```
 git clone https://github.com/schi60/Boots.git
 cd Boots
-python -m venv ~venv
+python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
