@@ -25,12 +25,12 @@ def map_get():
     return render_template('map.html')
 
 #startPage
-@app.get('/home')
+@app.get('/')
 def startPage_get():
     return render_template('startPage.html')
 
 #frontlawn
-@app.get('/')
+@app.get('/lawn')
 def frontLawn_get():
     return render_template('frontlawn.html')
 
