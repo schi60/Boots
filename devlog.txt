@@ -90,11 +90,12 @@ sophiaC --2025-12-11 11:00
 - update site map
 
 emaanA --2025-12-12 11:00
-- working on flash 
+- working on flash in auth.py/__init__.py
+- jinja2 in login.html and register.html
 
 sophiaC --2025-12-12 11:00
-- 
+- working on flash css in login.html and register.html
 
 junjieL --2025-12-12 11:00
-- 
+- adding clues to database
 
