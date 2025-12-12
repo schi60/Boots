@@ -4,7 +4,6 @@
     P01
   -->
 
-
 <h1>Sign Up</h1>
 
 <form action="/auth/signup" method="post">
@@ -13,5 +12,16 @@
   <input type="submit" value="Sign Up">
 </form>
 
-</div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+        <p class="flashes {{ category }}">{{ message }}</p>
+      {% endfor %}
+      {% endif %}
+    {% endwith %}
 
+    <main class="content">
+      {% block content %}
+      {% endblock %}
+    </main>
+</div>
