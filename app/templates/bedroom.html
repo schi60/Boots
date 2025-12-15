@@ -9,24 +9,72 @@
 <head>
     <meta charset="UTF-8">
     <title>Bedroom</title>
+    <!-- Foundation CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css" crossorigin="anonymous">
+    <!-- Foundation Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.min.css" crossorigin="anonymous">
+    <!-- jQuery for Foundation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Foundation JS -->
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/js/foundation.min.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            padding: 20px;
+        }
+        .api-button {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+        }
+        .modal-img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+        }
+    </style>
 </head>
-
-
 <body>
+ 
+        <a href="/map"> Back to Map </a>
 
- <a href="/map"> ← Return to Map </a> ✦
 
-    <h1>Joke</h1>
-    <p>{{ joke }}</p>
+    <h1>Bedroom</h1>
+    <p>Click to explore bedroom items:</p>
+    
+    <div>
+        <button class="button api-button" data-open="joke-modal">Read Joke</button>
+        <button class="button api-button" data-open="artwork-modal">View Artwork</button>
+    </div>
 
-    <h1>Artwork</h1>
-    {% if metItem.primaryImageSmall %}
-        <img src="{{ metItem.primaryImageSmall }}" alt="Met artwork">
-        <p><strong>Title:</strong> {{ metItem.title }}</p>
-        <p><strong>Artist:</strong> {{ metItem.artistDisplayName }}</p>
-        <p><strong>Date:</strong> {{ metItem.objectDate }}</p>
-    {% else %}
-        <p>No image available for this artwork.</p>
-    {% endif %}
+    <!-- Joke Modal -->
+    <div class="reveal" id="joke-modal" data-reveal>
+        <h2>Daily Joke</h2>
+        <div class="callout">
+            <p>{{ joke }}</p>
+        </div>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <!-- Artwork Modal -->
+    <div class="reveal large" id="artwork-modal" data-reveal>
+        <h2>Artwork</h2>
+        {% if metItem.primaryImageSmall %}
+            <img src="{{ metItem.primaryImageSmall }}" alt="Met artwork" class="modal-img">
+            <p><strong>Title:</strong> {{ metItem.title }}</p>
+            <p><strong>Artist:</strong> {{ metItem.artistDisplayName }}</p>
+            <p><strong>Date:</strong> {{ metItem.objectDate }}</p>
+        {% else %}
+            <p>No image available for this artwork.</p>
+        {% endif %}
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <script>
+        $(document).foundation();
+    </script>
 </body>
 </html>

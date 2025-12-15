@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--
     Boots
@@ -10,35 +11,88 @@
 <head>
     <meta charset="UTF-8">
     <title>Living Room</title>
+    <!-- Foundation CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css" crossorigin="anonymous">
+    <!-- Foundation Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.min.css" crossorigin="anonymous">
+    <!-- jQuery for Foundation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Foundation JS -->
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/js/foundation.min.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            padding: 20px;
+        }
+        .api-button {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+        }
+        .modal-img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+        }
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .movie-card {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
- <a href="/map"> ← Return to Map </a> ✦
+    <a href="/map"> ← Return to Map </a> ✦
 
     <h1>Living Room</h1>
+    <p>Click on an API to view its content:</p>
+    
+    <div>
+        <button class="button api-button" data-open="cat-modal">Cat of the Day</button>
+        <button class="button api-button" data-open="movie-modal">Mystery Movies</button>
+    </div>
 
-    {% if catImage %}
+    <!-- Cat Modal -->
+    <div class="reveal" id="cat-modal" data-reveal>
         <h2>Cat of the Day</h2>
-        <img src="{{ catImage }}" alt="Random Cat" width="300">
-    {% else %}
-        <p>No cat image available right now.</p>
-    {% endif %}
+        {% if catImage %}
+            <img src="{{ catImage }}" alt="Random Cat" class="modal-img">
+        {% else %}
+            <p>No cat image available right now.</p>
+        {% endif %}
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 
-    {% if movies and movies['Search'] %}
+    <!-- Movie Modal -->
+    <div class="reveal large" id="movie-modal" data-reveal>
         <h2>Mystery Movies</h2>
-        <ul>
-        {% for movie in movies['Search'] %}
-            <li>
-                <strong>{{ movie['Title'] }}</strong> ({{ movie['Year'] }})
-                <br>
-                {% if movie['Poster'] != "N/A" %}
-                    <img src="{{ movie['Poster'] }}" alt="{{ movie['Title'] }}" width="150">
-                {% endif %}
-            </li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No movies found.</p>
-    {% endif %}
+        {% if movies and movies['Search'] %}
+            <div class="movie-grid">
+            {% for movie in movies['Search'] %}
+                <div class="movie-card">
+                    {% if movie['Poster'] != "N/A" %}
+                        <img src="{{ movie['Poster'] }}" alt="{{ movie['Title'] }}" width="150">
+                    {% endif %}
+                    <h5>{{ movie['Title'] }}</h5>
+                    <p>{{ movie['Year'] }}</p>
+                </div>
+            {% endfor %}
+            </div>
+        {% else %}
+            <p>No movies found.</p>
+        {% endif %}
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 
+    <script>
+        $(document).foundation();
+    </script>
 </body>
 </html>

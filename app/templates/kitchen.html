@@ -9,41 +9,99 @@
 <head>
     <meta charset="UTF-8">
     <title>Kitchen</title>
+    <!-- Foundation CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css" crossorigin="anonymous">
+    <!-- Foundation Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.min.css" crossorigin="anonymous">
+    <!-- jQuery for Foundation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Foundation JS -->
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/js/foundation.min.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            padding: 20px;
+        }
+        .api-button {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+        }
+        .modal-img {
+            max-width: 300px;
+            height: auto;
+            margin: 10px 0;
+            display: block;
+        }
+        .ingredient-list {
+            columns: 2;
+            margin: 10px 10;
+        }
+        .recipe-image-container {
+            text-align: center;
+            margin: 15px 0;
+        }
+		 
+    </style>
 </head>
 <body>
+    <a href="/map"> ← Return to Map </a> ✦
 
- <a href="/map"> ← Return to Map </a> ✦
+    <h1>Kitchen</h1>
+    <p>Click to explore kitchen items:</p>
+    
+    <div>
+        <button class="button api-button" data-open="recipe-modal">View Recipe</button>
+        <button class="button api-button" data-open="holiday-modal">Check Calendar</button>
+    </div>
 
-    <h1>Random Recipe</h1>
-    {% if recipes and recipes.meals %}
-        {% set meal = recipes.meals[0] %}
-        <p>{{ meal.strMeal }}</p>
-        {% if meal.strMealThumb %}
-            <img src="{{ meal.strMealThumb }}" alt="{{ meal.strMeal }}" width="200">
+    <!-- Recipe Modal -->
+    <div class="reveal large" id="recipe-modal" data-reveal>
+        <h2>Random Recipe</h2>
+        {% if recipes and recipes.meals %}
+            {% set meal = recipes.meals[0] %}
+            <p>{{ meal.strMeal }}</p>
+            {% if meal.strMealThumb %}
+                <div class="recipe-image-container">
+                    <img src="{{ meal.strMealThumb }}" alt="{{ meal.strMeal }}" class="modal-img">
+                </div>
+            {% endif %}
+
+            <h3>Ingredients:</h3>
+            <ul class="ingredient-list">
+                {% for i in range(1, 21) %}
+                    {% set ingredient = meal['strIngredient' + i|string] %}
+                    {% set measure = meal['strMeasure' + i|string] %}
+                    {% if ingredient %}
+                        <li>{{ ingredient }} - {{ measure }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+
+            <h3>Instructions:</h3>
+            <p>{{ meal.strInstructions }}</p>
+        {% else %}
+            <p>No recipe found.</p>
         {% endif %}
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 
-        <h3>Ingredients:</h3>
-        <ul>
-            {% for i in range(1, 21) %}
-                {% set ingredient = meal['strIngredient' + i|string] %}
-                {% set measure = meal['strMeasure' + i|string] %}
-                {% if ingredient %}
-                    <li>{{ ingredient }} - {{ measure }}</li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+    <!-- Holiday Modal -->
+    <div class="reveal" id="holiday-modal" data-reveal>
+        <h2>Holidays</h2>
+        {% if holidays %}
+            <p>{{ holidays }}</p>
+        {% else %}
+            <p>No holiday found for this date.</p>
+        {% endif %}
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 
-        <h3>Instructions:</h3>
-        <p>{{ meal.strInstructions }}</p>
-    {% else %}
-        <p>No recipe found.</p>
-    {% endif %}
-
-    <h1>Holidays</h1>
-     {% if holidays %}
-        <p>{{ holidays }}</p>
-    {% else %}
-        <p>No holiday found for this date.</p>
-    {% endif %}
+    <script>
+        $(document).foundation();
+    </script>
 </body>
 </html>

@@ -8,15 +8,66 @@
 <html lang="en">
 <head>
     <title>Home</title>
+    <!-- Foundation CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css" crossorigin="anonymous">
+    <!-- Foundation Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.min.css" crossorigin="anonymous">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .icon-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #333;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .icon-bar a {
+            display: block;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .icon-bar a:hover {
+            background: #555;
+        }
+        .icon-bar i {
+            margin-right: 5px;
+        }
+        
+        .fancy-font {
+            font-family: Georgia, serif;
+            font-style: italic;
+            color: #2c3e50;
+        }
+        
+        .comic-font {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: #3498db;
+        }
+    </style>
 </head>
-<h1> HOME SWEET HOME </h1>
 <body>
-		{% if session['username'] %}
-		<a href="/auth/logout"> Logout </a> |
-		{% else %}
-		<a href="/login"> Login </a> |
-		<a href="register"> Sign Up </a>
-		{% endif %}
+    <div class="icon-bar">
+        {% if session['username'] %}
+       <a href="/map"><i class="fi-map"></i> Map</a> 
+		 <a href="/auth/logout"><i class="fi-power"></i> Logout</a>
+        {% else %}
+        <a href="/login"><i class="fi-key"></i> Login</a>
+        <a href="/register"><i class="fi-clipboard-pencil"></i> Sign Up</a>
+        {% endif %}
+    </div>
+   
+    
+    <!-- Option 1: Fancy font -->
+    <h1 class="fancy-font title-large" style = "text-align:center">HOME SWEET HOME</h1> 
+    
+    <!-- Option 2: Playful font -->
+    <!-- <h1 class="comic-font title-large">HOME SWEET HOME</h1> -->
+    
+    
 </body>
-
-</html>	
+</html>
