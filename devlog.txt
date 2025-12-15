@@ -102,4 +102,4 @@ junjieL --2025-12-12 11:00
 emaanA --2025-12-14 20:10
 - holidaysAPI and metAPI randomized 
 - jinja2 fixed for bedroom.html and kitchen.html
-
+- added .gitignore file 
