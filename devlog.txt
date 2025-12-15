@@ -5,29 +5,29 @@ sophiaC -- 2025-11-26 23:05
 emaanA -- 2025-11-30 00:20
 - uploading design document
 
-emaanA -- 2025-12-2 18:30 
+emaanA -- 2025-12-2 18:30
 - uploading updated design document based on feedback from 12/1
 
 sophiaC -- 2025-12-03 21:51
 INITIAL DD REVIEW
 - update site map to add new relationships
 - The component map needs to be clearer, showing connections with more explanations
-- Database tables need to be updated to show relationships between tables 
+- Database tables need to be updated to show relationships between tables
 
 sophiaC --2025-12-03 23:31
 README
 - update readme.md with app summary and description
 DD UPDATES
 - fixed site map
-- new component map 
+- new component map
 - fixed database tables diagram
 
 emaanA -- 2025-12-04 11:00
 - created keys dir
 - created keys readme with rundown in place
-- created txt files for keys 
+- created txt files for keys
 
-sophiaC --2025-12-04 11:00 
+sophiaC --2025-12-04 11:00
 - got holiday api and cat api keys + added them to respective txt files
 
 junjieL --2025-12-04 11:00
@@ -44,9 +44,9 @@ sophiaC --2025-12-05 11:00
 junjieL --2025-12-05 11:00
 - working on build_db.py and auth.py
 
-emaanA --2025-12-07 18:30 
+emaanA --2025-12-07 18:30
 - working app in place
-- fixed up auth.py 
+- fixed up auth.py
 - created routes for all html pages
 - added all html files to templates
 - fixed login.html, created register.html
@@ -65,10 +65,10 @@ sophiaC --2025-12-08 20:09
 - Update README.md and Design Document to new idea
 
 sophiaC --2025-12-09 11:00
-- updating design document 
+- updating design document
 
 emaanA --2025-12-09 11:00
-- moved keys dir into app dir 
+- moved keys dir into app dir
 - working on api loading mech, keys already in place
 
 emaanA --2025-12-09 23:10
@@ -100,12 +100,21 @@ junjieL --2025-12-12 11:00
 - adding clues to database
 
 emaanA --2025-12-14 20:10
-- holidaysAPI and metAPI randomized 
+- holidaysAPI and metAPI randomized
 - jinja2 fixed for bedroom.html and kitchen.html
-- added .gitignore file 
+- added .gitignore file
 
 sophiaC --2025-12-14 21:55
 - add Foundations CSS to html files
 
-emaanA --2025-12-14 23:50 
-- added sophiaC's work to settings.html 
+emaanA --2025-12-14 23:50
+- added sophiaC's work to settings.html
+
+sophiaC --2025-12-15 11:00
+- foundations in html files
+
+junjieL --2025-12-15 11:00
+- images in html files
+
+emaanA --2025-12-15 11:00
+- trying to add update username and update password feature to settings.html and /settings

@@ -113,6 +113,10 @@ def livingRoom_get():
 def settings_get():
     return render_template('settings.html')
 
+@app.post('/settings')
+def settings_post():
+    return redirect(url_for('auth.updatePassword'))
+
 #register
 @app.get('/register')
 def sign_up():

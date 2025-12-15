@@ -4,7 +4,7 @@
 # Dec 2025
 
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
-from db import select_query, insert_query
+from db import select_query, insert_query, general_query
 from werkzeug.security import generate_password_hash, check_password_hash
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -47,3 +47,22 @@ def logout_get():
     session.pop('username', None)
     flash('You have been logged out.', 'info')
     return redirect(url_for('startPage_get'))
+
+@bp.get('/update')
+def updateUsername():
+    oldUser = request.form.get('old username')
+    newUser = request.form.get('new username')
+    select_query("SELECT username FROM profiles WHERE username = ?;", [newUser])
+    general_query("UPDATE profiles SET username = ? WHERE username = ?;", (newUser, oldUser))
+    return redirect(url_for('auth.updateUsername'))
+
+def updatePassword():
+    print("Changing password for ", username)
+    username = request.form.get('username')
+    old = request.form.get('old password')
+    new = request.form.get('new password')
+    if updatePassword(username, old):
+        print("Old password verified")
+        hashed_password = generate_password_hash(new)
+        general_query("UPDATE profiles SET password = ? WHERE username = ?;", (hashed_password, username))
+    return redirect(url_for('auth.updatePassword'))
