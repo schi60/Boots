@@ -35,7 +35,7 @@ def frontLawn_get():
 @app.get('/bedroom')
 def bedroom_get():
     #jokeAPI
-    with urllib.request.urlopen("https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw.religious.political.racist.sexist.explicit") as response:
+    with urllib.request.urlopen("https://v2.jokeapi.dev/joke/Any?") as response:
         jokeData = json.loads(response.read())
 
     if jokeData.get("type") == "single":
