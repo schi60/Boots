@@ -2,9 +2,9 @@
 # SoftDev
 # P01
 
-from flask import Flask, render_template, request, flash, redirect, session, url_for, flash
+from flask import Flask, render_template, request, flash, redirect, session, url_for
 from db import select_query, insert_query, general_query
-import urllib.request, json
+import urllib.request, json, random
 
 app = Flask(__name__)
 app.secret_key = "edkasifjdsufh"
@@ -14,21 +14,19 @@ app.register_blueprint(auth.bp)
 
 @app.get('/login')
 def check_authentification():
-#    if 'username' not in session.keys() and request.blueprint != 'auth' and request.endpoint != 'static':
-#        flash("Please log in to view our website", "error")
-        return redirect(url_for("auth.login_get"))
+    return redirect(url_for("auth.login_get"))
+
+#home
+@app.get('/')
+def startPage_get():
+    return render_template('startPage.html')
 
 #map
 @app.get('/map')
 def map_get():
     return render_template('map.html')
 
-#startPage
-@app.get('/')
-def startPage_get():
-    return render_template('startPage.html')
-
-#frontlawn
+#frontLawn
 @app.get('/lawn')
 def frontLawn_get():
     return render_template('frontlawn.html')
@@ -39,17 +37,21 @@ def bedroom_get():
     #jokeAPI
     with urllib.request.urlopen("https://v2.jokeapi.dev/joke/Any") as response:
         jokeData = json.loads(response.read())
+
     if jokeData.get("type") == "single":
         jokeText = jokeData.get("joke")
     else:
         jokeText = f"{jokeData.get('setup')} - {jokeData.get('delivery')}"
 
     #metAPI
-    with urllib.request.urlopen("https://collectionapi.metmuseum.org/public/collection/v1/search?q=dog") as response:
+    with urllib.request.urlopen(
+        "https://collectionapi.metmuseum.org/public/collection/v1/search?q=dog&hasImages=true"
+    ) as response:
         metData = json.loads(response.read())
+
     metObject = {}
     if metData.get("objectIDs"):
-        objectId = metData["objectIDs"][0]
+        objectId = random.choice(metData["objectIDs"])
         objectUrl = f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{objectId}"
         with urllib.request.urlopen(objectUrl) as response:
             metObject = json.loads(response.read())
@@ -57,22 +59,28 @@ def bedroom_get():
     return render_template('bedroom.html', joke=jokeText, metItem=metObject)
 
 #kitchen
-#with open('keys/key_HolidaysAPI.txt') as file:
+with open('keys/key_HolidaysAPI.txt') as file:
     holidaysKey = file.read().strip()
 
 @app.get('/kitchen')
 def kitchen_get():
-    #freeRecipeAPI
-    recipeUrl = "https://www.themealdb.com/api/json/v1/1/random.php"
-    with urllib.request.urlopen(recipeUrl) as response:
+    #recipeAPI
+    with urllib.request.urlopen("https://www.themealdb.com/api/json/v1/1/random.php") as response:
         recipesData = json.loads(response.read())
-    return render_template('kitchen.html', recipes=recipesData)
 
     #holidaysAPI
-    holidaysUrl =  f'https://holidays.abstractapi.com/v1/?api_key={holidaysKey}&country=US&year=2025&month=12&day=25'
+    month = random.randint(1, 12)
+    day = random.randint(1, 28)
+    holidaysUrl = (
+        f"https://holidays.abstractapi.com/v1/"
+        f"?api_key={holidaysKey}&country=US&year=2025"
+        f"&month={month}&day={day}")
     with urllib.request.urlopen(holidaysUrl) as response:
         holidaysData = json.loads(response.read())
-        holidaysText = holidaysData.get("holiday")
+    holidaysText = None
+    if isinstance(holidaysData, list) and len(holidaysData) > 0:
+        holidaysText = holidaysData[0].get("name")
+
     return render_template('kitchen.html', recipes=recipesData, holidays=holidaysText)
 
 #livingRoom
@@ -84,14 +92,14 @@ with open('keys/key_TheCatAPI.txt') as file:
 
 @app.get('/livingRoom')
 def livingRoom_get():
-    #movieAPI
-    movieUrl = f"https://www.omdbapi.com/?apikey={movieKey}&s=mystery"
-    with urllib.request.urlopen(movieUrl) as response:
+    #moviesAPI
+    with urllib.request.urlopen(f"https://www.omdbapi.com/?apikey={movieKey}&s=mystery") as response:
         movies = json.loads(response.read())
 
     #catAPI
-    catUrl = "https://api.thecatapi.com/v1/images/search?has_breeds=1"
-    catRequest = urllib.request.Request(catUrl, headers={"x-api-key": catKey})
+    catRequest = urllib.request.Request(
+        "https://api.thecatapi.com/v1/images/search?has_breeds=1",
+        headers={"x-api-key": catKey})
     with urllib.request.urlopen(catRequest) as response:
         catData = json.loads(response.read())
     catImage = None

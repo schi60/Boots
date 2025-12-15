@@ -40,6 +40,10 @@
     {% endif %}
 
     <h1>Holidays</h1>
-    <p>{{ holidays }}</p>
+     {% if holidays %}
+        <p>{{ holidays }}</p>
+    {% else %}
+        <p>No holiday found for this date.</p>
+    {% endif %}
 </body>
 </html>

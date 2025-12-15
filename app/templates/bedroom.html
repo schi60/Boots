@@ -19,14 +19,14 @@
     <h1>Joke</h1>
     <p>{{ joke }}</p>
 
-    <h1>Museum Item</h1>
-    {% if metItem %}
-        <p>{{ metItem.title }}</p>
-        {% if metItem.primaryImageSmall %}
-            <img src="{{ metItem.primaryImageSmall }}" alt="{{ metItem.title }}" width="200">
-        {% endif %}
+    <h1>Artwork</h1>
+    {% if metItem.primaryImageSmall %}
+        <img src="{{ metItem.primaryImageSmall }}" alt="Met artwork">
+        <p><strong>Title:</strong> {{ metItem.title }}</p>
+        <p><strong>Artist:</strong> {{ metItem.artistDisplayName }}</p>
+        <p><strong>Date:</strong> {{ metItem.objectDate }}</p>
     {% else %}
-        <p>No museum item found.</p>
+        <p>No image available for this artwork.</p>
     {% endif %}
 </body>
 </html>
