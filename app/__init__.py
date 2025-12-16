@@ -111,11 +111,7 @@ def livingRoom_get():
 #settings
 @app.get('/settings')
 def settings_get():
-    return render_template('settings.html')
-
-@app.post('/settings')
-def settings_post():
-    return redirect(url_for('auth.updatePassword'))
+    return render_template('settings.html', username=session.get('username'))
 
 #register
 @app.get('/register')

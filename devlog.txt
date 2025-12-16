@@ -118,3 +118,7 @@ junjieL --2025-12-15 11:00
 
 emaanA --2025-12-15 11:00
 - trying to add update username and update password feature to settings.html and /settings
+
+emaanA --2025-12-15 23:00
+- working update username and update password
+- changed settings.html to have form 

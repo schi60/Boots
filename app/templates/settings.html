@@ -26,7 +26,22 @@
     <a href="/map"> ← Return to Map </a> ✦
 
     <h1>Settings</h1>
-    <a href="/auth/update"> Update User Info</a>
+    <h5>Current username: {{ username }}</h5>
+    <p1>Update Username</p1>
+
+    <form action="/auth/update/username" method="post">
+    <input type="text" name="new_username" placeholder="New Username" required>
+    <input type="submit" value="Update Username">
+    </form>
+    <br>
+
+    <p1>Update Password</p1>
+
+    <form action="/auth/update/password" method="post">
+    <input type="password" name="old_password" placeholder="Old Password" required>
+    <input type="password" name="new_password" placeholder="New Password" required>
+    <input type="submit" value="Update Password">
+    </form>
 
     <script>
         $(document).foundation();
