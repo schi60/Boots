@@ -12,6 +12,12 @@ app.secret_key = "edkasifjdsufh"
 import auth
 app.register_blueprint(auth.bp)
 
+@app.before_request
+def check_authentification():
+    if 'username' not in session.keys() and request.blueprint != 'auth' and request.endpoint != 'static':
+        flash("Please log in to view our website")
+        return redirect(url_for("auth.login_get"))
+
 @app.get('/login')
 def check_authentification():
     return redirect(url_for("auth.login_get"))
