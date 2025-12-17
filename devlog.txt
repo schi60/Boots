@@ -121,10 +121,13 @@ emaanA --2025-12-15 11:00
 
 emaanA --2025-12-15 23:00
 - working update username and update password
-- changed settings.html to have form 
+- changed settings.html to have form
 
-sophiaC --2025-12-17 00:30 
+sophiaC --2025-12-17 00:30
 - Add CSS to Login and Register
 
 sophiaC --2025-12-17 10:31
 - Add background images to HTML
+
+emaanA --2025-12-17 10:35
+- fixed flash messages
