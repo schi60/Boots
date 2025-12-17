@@ -14,13 +14,9 @@ app.register_blueprint(auth.bp)
 
 @app.before_request
 def check_authentification():
-    if 'username' not in session.keys() and request.blueprint != 'auth' and request.endpoint != 'static':
-        flash("Please log in to view our website")
+    if ('username' not in session and request.blueprint != 'auth' and request.endpoint != 'static' and request.endpoint != 'startPage_get'):
+        flash("Please log in to view our website", 'info')
         return redirect(url_for("auth.login_get"))
-
-@app.get('/login')
-def check_authentification():
-    return redirect(url_for("auth.login_get"))
 
 #home
 @app.get('/')
