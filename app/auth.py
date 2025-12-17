@@ -36,7 +36,7 @@ def login_post():
     rows = select_query("SELECT * FROM profiles WHERE username=?", [username])
     if len(rows) != 0 and check_password_hash(rows[0]['password'], password):
         session['username'] = username
-        flash(f'Login, {username}!', 'success')
+        #flash(f'Login, {username}!', 'success')
         return redirect(url_for('map_get'))
     else:
         flash('Invalid username or password.', 'error')
@@ -45,7 +45,7 @@ def login_post():
 @bp.get('/logout')
 def logout_get():
     session.pop('username', None)
-    flash('You have been logged out.', 'info')
+    flash('You have been logged out. Log in to view content', 'info')
     return redirect(url_for('startPage_get'))
 
 #update username
