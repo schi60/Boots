@@ -14,9 +14,9 @@ app.register_blueprint(auth.bp)
 
 @app.before_request
 def check_authentification():
-    if ('username' not in session and request.blueprint != 'auth' and request.endpoint != 'static' and request.endpoint != 'startPage_get'):
-        flash("Please log in to view our website", 'info')
-        return redirect(url_for("auth.login_get"))
+    if 'username' not in session and request.blueprint != 'auth' and request.endpoint != 'static':
+        flash("Please sign up to view our website", 'info')
+        return render_template('auth/register.html')
 
 #home
 @app.get('/')

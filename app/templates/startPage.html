@@ -37,13 +37,13 @@
         .icon-bar i {
             margin-right: 5px;
         }
-        
+
         .fancy-font {
             font-family: Georgia, serif;
             font-style: italic;
             color: #2c3e50;
         }
-        
+
         .comic-font {
             font-family: 'Comic Sans MS', cursive, sans-serif;
             color: #3498db;
@@ -53,21 +53,21 @@
 <body>
     <div class="icon-bar">
         {% if session['username'] %}
-       <a href="/map"><i class="fi-map"></i> Map</a> 
+       <a href="/map"><i class="fi-map"></i> Map</a>
 		 <a href="/auth/logout"><i class="fi-power"></i> Logout</a>
         {% else %}
-        <a href="/login"><i class="fi-key"></i> Login</a>
+        <a href="/auth/login"><i class="fi-key"></i> Login</a>
         <a href="/register"><i class="fi-clipboard-pencil"></i> Sign Up</a>
         {% endif %}
     </div>
-   
-    
+
+
     <!-- Option 1: Fancy font -->
-    <h1 class="fancy-font title-large" style = "text-align:center">HOME SWEET HOME</h1> 
-    
+    <h1 class="fancy-font title-large" style = "text-align:center">HOME SWEET HOME</h1>
+
     <!-- Option 2: Playful font -->
     <!-- <h1 class="comic-font title-large">HOME SWEET HOME</h1> -->
-    
-    
+
+
 </body>
 </html>
