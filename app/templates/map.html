@@ -9,9 +9,7 @@
 <html>
 <head>
     <title>House Map</title>
-    <!-- Foundation CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css" crossorigin="anonymous">
-    <!-- Foundation Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.min.css" crossorigin="anonymous">
     <style>
         body {
@@ -22,7 +20,9 @@
             background-repeat: no-repeat;
             height: 100vh;
             margin: 0;
+            position: relative; 
         }
+
         .icon-bar {
             position: fixed;
             top: 20px;
@@ -30,6 +30,7 @@
             background: #333;
             border-radius: 5px;
             padding: 10px;
+            z-index: 100;
         }
         .icon-bar a {
             display: block;
@@ -44,30 +45,47 @@
         .icon-bar i {
             margin-right: 5px;
         }
-        .room-button {
-            width: 100px;
-            height: 100px;
+
+        .hotspot {
+            position: absolute;
+            width: 60px;  
+            height: 60px;  
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
             border-radius: 50%;
-            margin: 10px;
-            font-size: 0.9rem;
+            background: transparent; 
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+
+        .hotspot:hover {
+            background: rgba(0, 0, 0, 0.4); 
+            color: white; 
+            font-size: 0.8rem;
+            text-shadow: 1px 1px 2px black;
         }
     </style>
 </head>
 <body>
+
     <div class="icon-bar">
         <a href="/"><i class="fi-home"></i> Home</a>
         <a href="/settings"><i class="fi-widget"></i> Settings</a>
         <a href="/auth/logout"><i class="fi-power"></i> Logout</a>
     </div>
     
-    <h1>🏠 House Map</h1>
-    <p>Click a room to investigate:</p>
+    <h1 style="color: white; text-shadow: 2px 2px 4px #000;">🏠 House Map</h1>
     
-    <div>
-        <button class="button room-button" onclick="location.href='/lawn'">Front Lawn</button>
-        <button class="button room-button" onclick="location.href='/bedroom'">Bedroom</button>
-        <button class="button room-button" onclick="location.href='/kitchen'">Kitchen</button>
-        <button class="button room-button" onclick="location.href='/livingRoom'">Living Room</button>
-    </div>
+    <a href="/lawn" class="hotspot" style="top: 25%; left: 15%;">Lawn</a>
+    
+    <a href="/bedroom" class="hotspot" style="top: 35%; left: 45%;">Room</a>
+    
+    <a href="/kitchen" class="hotspot" style="top: 65%; left: 22%;">Kitchen</a>
+    
+    <a href="/livingRoom" class="hotspot" style="top: 58%; left: 68%;">Living</a>
+
 </body>
 </html>
