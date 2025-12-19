@@ -25,6 +25,11 @@ CREATE TABLE clues (
     clue_name TEXT,
     clue_found INTEGER
 );
+
+DROP TABLE IF EXISTS artwork;
+CREATE TABLE artwork (
+     art TEXT PRIMARY KEY
+);
 INSERT INTO clues VALUES (1, "insert clue description here", "Recipe", 0);
 INSERT INTO clues VALUES (2, "insert clue description here", "Joke", 0);
 INSERT INTO clues VALUES (3, "insert clue description here", "Museum", 0);

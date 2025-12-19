@@ -57,6 +57,7 @@ def bedroom_get():
         objectUrl = f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{objectId}"
         with urllib.request.urlopen(objectUrl) as response:
             metObject = json.loads(response.read())
+        #    insert_query("artwork", {'art': metObject})
 
     return render_template('bedroom.html', joke=jokeText, metItem=metObject)
 
