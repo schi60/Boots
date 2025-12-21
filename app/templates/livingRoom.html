@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--
     Boots
@@ -6,7 +5,6 @@
     P01
     SoftDev 2025
 -->
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -22,19 +20,74 @@
     <style>
         body {
             padding: 20px;
-            padding: 20px;
-            background-image: url("https://media.discordapp.net/attachments/723303997955506257/1450657618787045503/F7296254-D229-49DD-B876-5960BD6A75F3.png?ex=694355b0&is=69420430&hm=2c2e99ee80a6663ff9fb1d8cfa8f9a5aa630b08506144c880d9f4d51fd223318&=&format=webp&quality=lossless&width=1563&height=879");
+            background-image: url('/static/livingRoom.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             height: 100vh;
             margin: 0;
+            position: relative;
         }
-        .api-button {
-            margin: 10px;
-            padding: 15px 30px;
-            font-size: 1.2rem;
+        
+        /* Return link styling */
+        a {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            z-index: 100;
         }
+        
+        a:hover {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+        
+        /* styling for modal buttons */
+        .hotspot-modal {
+            position: absolute;
+            width: 90px;  
+            height: 90px;  
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            color: black;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+        
+        .hotspot-modal:hover {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        #cat-hotspot {
+            top: 50%;
+            left: 68%;
+        }
+        
+        #movie-hotspot {
+            top: 45%;
+            left: 45%;
+        }
+        
+        .hotspot-modal:hover::after {
+            opacity: 1;
+        }
+        
         .modal-img {
             max-width: 100%;
             height: auto;
@@ -52,15 +105,14 @@
     </style>
 </head>
 <body>
-    <a href="/map"> ← Return to Map </a> ✦
-
-    <h1>Living Room</h1>
-    <p>Click on an API to view its content:</p>
+    <a href="/map"> ← Return to Map </a>
     
-    <div>
-        <button class="button api-button" data-open="cat-modal">Cat of the Day</button>
-        <button class="button api-button" data-open="movie-modal">Mystery Movies</button>
-    </div>
+    <h1 style="color: white; text-shadow: 2px 2px 4px #000; text-align: center; margin-top: 20px;">🛋️ Living Room</h1>
+
+    <!-- Hotspot buttons for modals -->
+    <button class="hotspot-modal" id="cat-hotspot" data-open="cat-modal">Cat Album</button>
+    
+    <button class="hotspot-modal" id="movie-hotspot" data-open="movie-modal">Movie Catalog</button>
 
     <!-- Cat Modal -->
     <div class="reveal" id="cat-modal" data-reveal>

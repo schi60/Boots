@@ -20,12 +20,74 @@
     <style>
         body {
             padding: 20px;
+            background-image: url('/static/kitchen.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            position: relative;
         }
-        .api-button {
-            margin: 10px;
-            padding: 15px 30px;
-            font-size: 1.2rem;
+        
+        /* Return link styling */
+        a {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            z-index: 100;
         }
+        
+        a:hover {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+        
+        /* styling for modal buttons */
+        .hotspot-modal {
+            position: absolute;
+            width: 80px;  
+            height: 80px;  
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            color: black;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+        
+        .hotspot-modal:hover {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        #recipe-hotspot {
+            top: 51%;
+            left: 60%;
+        }
+        
+        #holiday-hotspot {
+            top: 21%;
+            left: 63%;
+        }
+        
+        .hotspot-modal:hover::after {
+            opacity: 1;
+        }
+        
         .modal-img {
             max-width: 300px;
             height: auto;
@@ -40,19 +102,17 @@
             text-align: center;
             margin: 15px 0;
         }
-		 
     </style>
 </head>
 <body>
-    <a href="/map"> ← Return to Map </a> ✦
-
-    <h1>Kitchen</h1>
-    <p>Click to explore kitchen items:</p>
+    <a href="/map"> ← Return to Map </a>
     
-    <div>
-        <button class="button api-button" data-open="recipe-modal">View Recipe</button>
-        <button class="button api-button" data-open="holiday-modal">Check Calendar</button>
-    </div>
+    <h1 style="color: white; text-shadow: 2px 2px 4px #000; text-align: center; margin-top: 20px;">🍳 Kitchen</h1>
+
+    <!-- Hotspot buttons for modals -->
+    <button class="hotspot-modal" id="recipe-hotspot" data-open="recipe-modal">Recipe</button>
+    
+    <button class="hotspot-modal" id="holiday-hotspot" data-open="holiday-modal">Calender</button>
 
     <!-- Recipe Modal -->
     <div class="reveal large" id="recipe-modal" data-reveal>

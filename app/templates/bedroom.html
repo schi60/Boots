@@ -20,18 +20,74 @@
     <style>
         body {
             padding: 20px;
-            background-image: url("https://media.discordapp.net/attachments/723303997955506257/1450656915549065256/D16C5E72-3CA9-4603-9524-504BBF7826D2.png?ex=69435508&is=69420388&hm=f464a5d53eded6188a5ab8acdab1820921e3c38d1c7c2496e73687f785aee1d3&=&format=webp&quality=lossless&width=1563&height=879");
+            background-image: url('/static/bedroom.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             height: 100vh;
             margin: 0;
+            position: relative;
         }
-        .api-button {
-            margin: 10px;
-            padding: 15px 30px;
-            font-size: 1.2rem;
+        
+        /* Return link styling */
+        a {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            z-index: 100;
         }
+        
+        a:hover {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+        
+        /* styling for modal buttons */
+        .hotspot-modal {
+            position: absolute;
+            width: 60px;  
+            height: 60px;  
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            color: black;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+        
+        .hotspot-modal:hover {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        #joke-hotspot {
+            top: 40%;
+            left: 30%;
+        }
+        
+        #artwork-hotspot {
+            top: 50%;
+            left: 55%;
+        }
+        
+        .hotspot-modal:hover::after {
+            opacity: 1;
+        }
+        
         .modal-img {
             max-width: 100%;
             height: auto;
@@ -40,17 +96,14 @@
     </style>
 </head>
 <body>
- 
-        <a href="/map"> ← Return to Map  </a>
+    <a href="/map"> ← Return to Map  </a>
+	
+	 <h1 style="color: white; text-shadow: 2px 2px 4px #000; text-align: center; margin-top: 20px;">🛏️ Bedroom</h1>
 
-
-    <h1>Bedroom</h1>
-    <p>Click to explore bedroom items:</p>
+    <!-- Hotspot buttons for modals -->
+    <button class="hotspot-modal" id="joke-hotspot" data-open="joke-modal" data-label="Read Joke">Joke</button>
     
-    <div>
-        <button class="button api-button" data-open="joke-modal">Read Joke</button>
-        <button class="button api-button" data-open="artwork-modal">View Artwork</button>
-    </div>
+    <button class="hotspot-modal" id="artwork-hotspot" data-open="artwork-modal" data-label="View Artwork">Art</button>
 
     <!-- Joke Modal -->
     <div class="reveal" id="joke-modal" data-reveal>
@@ -81,6 +134,7 @@
 
     <script>
         $(document).foundation();
+        
     </script>
 </body>
 </html>
