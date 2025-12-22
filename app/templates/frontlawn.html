@@ -134,12 +134,12 @@
     <a href="/map"> ← Return to Map </a>
     
     <div class="progress-badge">
-        🔍 Clues: {{ session.get('collected_clues', [])|length }}/6
+        🔍 Clues: {{ session.get('collectedClues', [])|length }}/6
     </div>
     
     <h1>🌳 Front Lawn</h1>
 
-    {% set clue_count = session.get('collected_clues', [])|length %}
+    {% set clue_count = session.get('collectedClues', [])|length %}
     
     {% if clue_count == 6 %}
     <!-- UNLOCKED DOOR - appears when player has all 6 clues -->
