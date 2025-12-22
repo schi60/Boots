@@ -151,12 +151,12 @@
         {% endif %}
 		
 			<!-- Restart Game Button (only shown to winners) -->
-		{% if won_game %}
+		{% if win %}
 		<div class="restart-section" style="text-align: center; margin: 20px 0;">
 		    <div class="callout success">
 		        <h5>🎉 Investigation Complete! 🎉</h5>
 		        <p>You've successfully solved the case!</p>
-		        <a href="/reset-game" class="button alert">
+		        <a href="/reset" class="button alert">
 		            <i class="fi-refresh"></i> Start New Investigation
 		        </a>
 		        <p style="font-size: 0.9em; margin-top: 10px; color: #666;">
@@ -169,10 +169,10 @@
 		<!-- WIN/LOSE MESSAGES -->
 	<div class="flash-container">
 	    <!-- Display success message if player won -->
-	    {% if success_message %}
+	    {% if success %}
 	    <div class="callout success" data-closable>
 	        <h5>🎉 CASE SOLVED! 🎉</h5>
-	        <p>{{ success_message }}</p>
+	        <p>{{ success }}</p>
 	        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
 	            <span aria-hidden="true">&times;</span>
 	        </button>
