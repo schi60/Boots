@@ -135,6 +135,14 @@ def collectClue(clueID):
         return True
     return False
 
+@app.post('/clue/<clueID>')
+def clue(clueID):
+    if 'username' not in session:
+        flash('Please log in first.', 'error')
+        return redirect(url_for('auth.login_get'))
+    collectClue(clueID)
+    return redirect(request.referrer or url_for('map_get'))
+
 #all clues have been collected
 def allClues():
     return len(session.get('collectedClues', [])) >= 6
@@ -147,14 +155,6 @@ def reset():
     session.pop('success', None)  
     session.modified = True
 
-@app.post('/clue/<clueID>')
-def clue(clueID):
-    if 'username' not in session:
-        flash('Please log in first.', 'error')
-        return redirect(url_for('auth.login_get'))
-    collectClue(clueID)
-    return redirect(request.referrer or url_for('map_get'))
-
 @app.get('/reset')
 def reset_get():
     if 'username' not in session:
@@ -163,6 +163,7 @@ def reset_get():
     flash('Game reset! Start collecting clues again.', 'info')
     return redirect(url_for('startPage_get'))
 
+#game end
 @app.get('/accusation')
 def accusation():
     if 'username' not in session:
