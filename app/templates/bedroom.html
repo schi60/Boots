@@ -28,7 +28,7 @@
             margin: 0;
             position: relative;
         }
-        
+
         /* Return link styling */
         a {
             position: fixed;
@@ -42,12 +42,12 @@
             font-weight: bold;
             z-index: 100;
         }
-        
+
         a:hover {
             background: rgba(0, 0, 0, 0.7);
             color: white;
         }
-        
+
         /* styling for modal buttons */
         .hotspot-modal {
             position: absolute;
@@ -67,33 +67,33 @@
             transition: all 0.3s ease;
             z-index: 5;
         }
-        
+
         .hotspot-modal:hover {
             background: rgba(0, 0, 0, 0.7);
             color: white;
             transform: scale(1.1);
         }
-        
+
         #joke-hotspot {
             top: 48%;
             left: 16%;
         }
-        
+
         #artwork-hotspot {
             top: 43.8%;
             left: 39.7%;
         }
-        
+
         .hotspot-modal:hover::after {
             opacity: 1;
         }
-        
+
         .modal-img {
             max-width: 100%;
             height: auto;
             margin: 10px 0;
         }
-        
+
         .clue-box {
             background: #f8f9fa;
             padding: 15px;
@@ -101,7 +101,7 @@
             margin-top: 20px;
             border-left: 4px solid #2c3e50;
         }
-        
+
         .clue-collected {
             background: #d4edda;
             border-left-color: #28a745;
@@ -110,16 +110,16 @@
 </head>
 <body>
     <a href="/map"> ← Return to Map  </a>
-	    
+
 	<div class="progress-badge" style="position: fixed; top: 20px; right: 20px; background: rgba(0,0,0,0.8); color: white; padding: 10px 15px; border-radius: 20px; font-weight: bold; z-index: 100;">
         🔍 Clues: {{ session.get('collected_clues', [])|length }}/6
     </div>
-	
+
 	 <h1 style="color: white; text-shadow: 2px 2px 4px #000; text-align: center; margin-top: 20px;">🛏️ Bedroom</h1>
 
     <!-- Hotspot buttons for modals -->
     <button class="hotspot-modal" id="joke-hotspot" data-open="joke-modal" data-label="Read Joke">Joke</button>
-    
+
     <button class="hotspot-modal" id="artwork-hotspot" data-open="artwork-modal" data-label="View Artwork">Art</button>
 
     <!-- Joke Modal -->
@@ -128,9 +128,25 @@
         <div class="callout">
             <p>{{ joke }}</p>
         </div>
+
+        <!-- CLUE: Miles's Alibi -->
+        <div class="clue-box {% if 'miles_alibi' in session.get('collected_clues', []) %}clue-collected{% endif %}">
+            <h5>🔍 INVESTIGATION NOTE: MILES'S ALIBI</h5>
+            <p>Security logs show Miles went to the study, not to see Reginald. He was searching for something. Casino cameras show him leaving at 8:15 PM, not 11:00 PM as claimed.</p>
+            
+            {% if 'miles_alibi' in session.get('collected_clues', []) %}
+            <button class="button success tiny" disabled>
+                ✓ Clue Already Recorded
+            </button>
+            {% else %}
+            <form action="/collect-clue/miles_alibi" method="post" style="margin-bottom: 0;">
+                <button type="submit" class="button alert tiny">
+                    📝 Record This Clue
+                </button>
+            </form>
+            {% endif %}
+        </div>
         
-        <!-- CLUE -->
-   
         <button class="close-button" data-close aria-label="Close modal" type="button">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -147,9 +163,21 @@
         {% else %}
             <p>No image available for this artwork.</p>
         {% endif %}
-        
-        <!-- CLUE: -->
-        
+
+        <!-- CLUE: Finch's Obsession -->
+        <div class="clue-box {% if 'finch_emails' in session.get('collected_clues', []) %}clue-collected{% endif %}">
+            <h5>🔍 INVESTIGATION NOTE: FINCH'S OBSESSION</h5>
+            <p>Dr. Finch sent 17 emails about the Medici dagger this month. Final email: "This is your last chance to sell it willingly." Museum meeting ended at 7:30 PM - he had time to get here.</p>
+            
+            {% if 'finch_emails' in session.get('collected_clues', []) %}
+            <button class="button success tiny" disabled>✓ Clue Already Recorded</button>
+            {% else %}
+            <form action="/collect-clue/finch_emails" method="post">
+                <button type="submit" class="button alert tiny">📝 Record This Clue</button>
+            </form>
+            {% endif %}
+        </div>
+
         <button class="close-button" data-close aria-label="Close modal" type="button">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -159,4 +187,3 @@
         $(document).foundation();
     </script>
 </body>
-</html>
