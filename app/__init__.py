@@ -178,27 +178,30 @@ def accusation():
 @app.post('/submit')
 def submit():
     if 'username' not in session:
-        return redirect(url_for('auth.login_get'))
+        return redirect(url_for('auth.login_get')) 
     if not allClues():
         flash('You need all 6 clues first!', 'error')
-        return redirect(url_for('frontLawn_get'))
-    murderer = request.form.get('murderer')
+        return redirect(url_for('frontLawn_get')) 
+    murderer = request.form.get('murderer') 
     if murderer == 'butler':
         session['accusation_made'] = True
-        session['correct'] = True  
-        session['success'] = "CORRECT! The Butler killed Reginald. He was stealing art and got caught. Case solved!"
+        session['correct'] = True
+        session['success'] = (
+            "CORRECT! The Butler killed Reginald. He was stealing art and got caught. "
+            "Click the button below to return to the start page."
+        )
         session.modified = True
-        return redirect(url_for('startPage_get'))
+        return render_template('finalAccusation.html', correct=True, clues=session.get('collectedClues', [])) 
     else:
-        reset() 
+        reset()
         wrong_messages = {
             'dealer': "Wrong! Vivian had motive but not opportunity. She left before the murder.",
             'nephew': "Wrong! Miles wanted the inheritance but was at the casino during the murder.",
             'cook': "Wrong! Mrs. Henderson was angry, but her son's issues weren't worth murder.",
-            'rival': "Wrong! Dr. Finch wanted the dagger, but museum cameras confirm his alibi."}
-        
-        flash(f"{wrong_messages.get(murderer, 'Wrong answer')} The case has been reset. Start over", 'error')
-        return redirect(url_for('startPage_get'))
-		 
+            'rival': "Wrong! Dr. Finch wanted the dagger, but museum cameras confirm his alibi."
+        }
+        flash(f"{wrong_messages.get(murderer, 'Wrong answer')} All clues have been cleared. Start over.", 'error')
+        return render_template('finalAccusation.html', correct=False, clues=[])
+
 if __name__ == '__main__':
     app.run(debug=True)

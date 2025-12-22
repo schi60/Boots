@@ -160,12 +160,58 @@
 			</div>
 
         <hr>
+<!-- Flash messages (wrong guesses) -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for category, message in messages %}
+        <div class="callout {{ category }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
 
+<!-- Success message (correct guess) -->
+{% if correct %}
+  <div class="callout success text-center" style="margin-bottom:20px;">
+      <p>{{ session['success'] }}</p>
+      <a href="{{ url_for('startPage_get') }}">
+          <button class="button success">🏠 Go back to Start Page</button>
+      </a>
+  </div>
+{% endif %}
 
-        <!-- Simple accusation form -->
-        <form action="/submit
-        " method="post">
-            <h4>Who is the murderer?</h4>
+<!-- Display collected clues -->
+<h4>📋 Your Collected Clues:</h4>
+<div class="clue-list">
+    {% for clueID in session.get('collectedClues', []) %}
+        <div class="clue-item">
+            {% if clueID == 'miles_alibi' %}
+            ✓ <strong>Miles's Alibi:</strong> Security logs show Miles went to the study...
+            {% elif clueID == 'finch_emails' %}
+            ✓ <strong>Finch's Obsession:</strong> Dr. Finch sent 17 emails...
+            {% elif clueID == 'henderson_lie' %}
+            ✓ <strong>Henderson's Lie:</strong> Mrs. Henderson's church choir...
+            {% elif clueID == 'butler_theft' %}
+            ✓ <strong>Butler's Theft:</strong> James wasn't just being fired...
+            {% elif clueID == 'vivian_scheme' %}
+            ✓ <strong>Vivian's Scheme:</strong> 60% of Vivian's sold artworks...
+            {% elif clueID == 'weapon_found' %}
+            ✓ <strong>Weapon Discovery:</strong> Murder weapon found in compost bin...
+            {% else %}
+            ✓ Unknown clue
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
+<hr>
+
+<!-- Accusation form (always displayed) -->
+<form action="/submit" method="post">
+    <h4>Who is the murderer?</h4>
 
             <label class="suspect-option">
                 <input type="radio" name="murderer" value="butler" required>
