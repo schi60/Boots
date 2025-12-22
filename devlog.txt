@@ -157,6 +157,7 @@ sophiaC --2025-12-21 23:00
 - added background images + hotspots
 - created finalAccusation.HTML
 - links
+- startPage fixes 
 
 junjieL --2025-12-21 23:00
 - adding background images
@@ -165,5 +166,10 @@ junjieL --2025-12-21 23:00
 
 emaanA --2025-12-21 23:00
 - collecting clues
+    - created /submit 
+    - /accusation
+    - /clue/<clueID>
+    - /reset
 - stored clues in database for each username
 - fixing html to align with clue storage
+- creating flash messages for incorrect/correct guesses
