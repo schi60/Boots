@@ -180,19 +180,7 @@
             <p>No movies found.</p>
         {% endif %}
         
-        <!-- CLUE: Vivian's Scheme -->
-        <div class="clue-box {% if 'vivian_scheme' in session.get('collected_clues', []) %}clue-collected{% endif %}">
-            <h5>🔍 INVESTIGATION NOTE: VIVIAN'S SCHEME</h5>
-            <p>60% of Vivian's sold artworks are fakes. She's part of a ring that insures forgeries, then "steals" them for insurance payouts. Her Uber shows drop-off at 7:25 PM but no pick-up recorded.</p>
-            
-            {% if 'vivian_scheme' in session.get('collected_clues', []) %}
-            <button class="button success tiny" disabled>✓ Clue Already Recorded</button>
-            {% else %}
-            <form action="/collect-clue/vivian_scheme" method="post">
-                <button type="submit" class="button alert tiny">📝 Record This Clue</button>
-            </form>
-            {% endif %}
-        </div>
+        <!-- CLUE -->
         
         <button class="close-button" data-close aria-label="Close modal" type="button">
             <span aria-hidden="true">&times;</span>

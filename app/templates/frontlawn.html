@@ -27,66 +27,7 @@
             margin: 0;
             position: relative;
         }
-        
-        .secret-door {
-            position: absolute;
-            top: 55%; 
-            left: 32%;
-            transform: translate(-50%, -50%);
-            width: 95px; 
-            height: 125px;
-            background: rgba(139, 69, 19, 0.9);
-            border: 6px solid #5D4037;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #FFD700;
-            font-size: 1.0rem;  
-            cursor: pointer;
-            transition: all 0.5s ease;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
-        }
-        
-        .secret-door:hover {
-            transform: translate(-50%, -50%) scale(1.05);
-            box-shadow: 0 0 30px #FFD700;
-        }
-        
-        .secret-door.locked {
-            background: rgba(0,0,0,0.7);
-            color: #999;
-            cursor: not-allowed;
-            border-color: #444;
-        }
-        
-        .secret-door.locked:hover {
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
-        }
-        
-        .door-label {
-            font-size: 0.8rem; 
-            margin-top: 8px;
-            color: #CCC;
-        }
-        
-        .progress-badge {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            background: rgba(0,0,0,0.8);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 20px;
-            font-weight: bold;
-            z-index: 100;
-            font-size: 0.9rem;
-        }
-        
+		 
         /* Return link styling */
         a {
             position: fixed;
@@ -115,53 +56,14 @@
             font-size: 1.8rem;
         }
         
-        .door-hint {
-            color: white;
-            position: absolute;
-            top: 70%;  
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            width: 300px;
-            font-size: 0.9rem;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 8px;
-        }
     </style>
 </head>
 <body>
     <a href="/map"> ← Return to Map </a>
-    
-    <div class="progress-badge">
-        🔍 Clues: {{ session.get('collected_clues', [])|length }}/6
-    </div>
-    
+
     <h1>🌳 Front Lawn</h1>
     
-    {% set clue_count = session.get('collected_clues', [])|length %}
-    
-    {% if clue_count == 6 %}
-    <!-- UNLOCKED DOOR - appears when player has all 6 clues -->
-    <div class="secret-door" onclick="window.location.href='/final-accusation'">
-        🚪<br>SECRET STUDY<br>
-        <span class="door-label">Click to Enter</span>
-    </div>
-    <div class="door-hint">
-        <em>The house reveals a hidden door...<br>All clues collected. Time to solve the case.</em>
-    </div>
-    {% else %}
-	
-    <!-- LOCKED DOOR -->
-    <div class="secret-door locked">
-        🔒<br>LOCKED<br>
-        <span class="door-label">{{ clue_count }}/6 Clues</span>
-    </div>
-    <div class="door-hint">
-        <em>A mysterious door on the mansion...<br>Collect all 6 clues to unlock it.</em>
-    </div>
-    {% endif %}
-    
+
     <script>
         $(document).foundation();
     </script>

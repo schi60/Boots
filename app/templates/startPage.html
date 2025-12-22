@@ -147,76 +147,7 @@
         <h1 class="fancy-font title-large">HOME SWEET HOME</h1>
         
         {% if session['username'] %}
-        <!-- Progress Display -->
-        <div class="progress-info">
-            {% set clue_count = session.get('collected_clues', [])|length %}
-            <h4>Investigation Progress</h4>
-            <div class="progress" role="progressbar" tabindex="0" aria-valuenow="{{ (clue_count / 6) * 100 }}" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-meter" style="width: {{ (clue_count / 6) * 100 }}%"></div>
-            </div>
-            <p>{{ clue_count }}/6 Clues Collected</p>
-            
-            {% if clue_count == 6 %}
-            <div class="callout success">
-                <p>✅ All clues collected! Go to the Front Lawn to solve the case.</p>
-            </div>
-            {% endif %}
-            
-            <!-- Case Info Button -->
-            <button class="case-button" data-open="case-modal">
-                <i class="fi-book"></i> View Case File
-            </button>
-        </div>
-        {% else %}
-        <div style="text-align: center; margin-top: 20px;">
-            <p>Please log in or sign up to play the murder mystery game.</p>
-        </div>
-        {% endif %}
-    </div>
-		
-			<!-- Restart Game Button (only shown to winners) -->
-		{% if won_game %}
-		<div class="restart-section" style="text-align: center; margin: 20px 0;">
-		    <div class="callout success">
-		        <h5>🎉 Investigation Complete! 🎉</h5>
-		        <p>You've successfully solved the case!</p>
-		        <a href="/reset-game" class="button alert">
-		            <i class="fi-refresh"></i> Start New Investigation
-		        </a>
-		        <p style="font-size: 0.9em; margin-top: 10px; color: #666;">
-		            <em>Click above to start a fresh mystery</em>
-		        </p>
-		    </div>
-		</div>
-		{% endif %}
 
-		<!-- WIN/LOSE MESSAGES -->
-	<div class="flash-container">
-	    <!-- Display success message if player won -->
-	    {% if success_message %}
-	    <div class="callout success" data-closable>
-	        <h5>🎉 CASE SOLVED! 🎉</h5>
-	        <p>{{ success_message }}</p>
-	        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
-	            <span aria-hidden="true">&times;</span>
-	        </button>
-	    </div>
-	    {% endif %}
-	    
-	    <!-- Display flash messages for errors (when player loses) -->
-	    {% with messages = get_flashed_messages(with_categories=true) %}
-	        {% if messages %}
-	            {% for category, message in messages %}
-	                <div class="callout {{ 'alert' if category == 'error' else 'success' if category == 'success' else 'primary' }}" data-closable>
-	                    {{ message }}
-	                    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
-	                        <span aria-hidden="true">&times;</span>
-	                    </button>
-	                </div>
-	            {% endfor %}
-	        {% endif %}
-	    {% endwith %}
-	</div>
 	
     <!-- Case Info Modal - KEEP IT SIMPLE -->
     <div class="reveal large" id="case-modal" data-reveal>
@@ -224,19 +155,10 @@
         
         <div class="callout alert">
             <h5>URGENT INVESTIGATION</h5>
-            <p><strong>Victim:</strong> Reginald Vanderbilt, 68-year-old art collector</p>
-            <p><strong>Crime Scene:</strong> Vanderbilt Estate, bedroom</p>
-            <p><strong>Time:</strong> Last night, 8 PM - midnight</p>
-            <p><strong>Your Mission:</strong> Collect 6 clues, identify the murderer</p>
         </div>
         
         <h5>THE SUSPECTS</h5>
         <ul class="suspect-list">
-            <li><strong>James Worthington</strong> - The Butler, age 62. Being fired after 30 years.</li>
-            <li><strong>Vivian Lacroix</strong> - Art Dealer, age 45. Sold $2M in forged art.</li>
-            <li><strong>Miles Vanderbilt</strong> - The Nephew, age 32. Sole heir to $50M estate.</li>
-            <li><strong>Mrs. Henderson</strong> - The Cook, age 58. Son facing embezzlement charges.</li>
-            <li><strong>Dr. Alistair Finch</strong> - Rival Collector, age 71. Obsessed with a rare dagger.</li>
         </ul>
         
         <h5>HOW TO PLAY</h5>
@@ -248,9 +170,6 @@
             <li>Enter the secret study and make your accusation</li>
         </ol>
         
-        <p><em>All suspects have motives. Your job is to find who had the means and opportunity.</em></p>
-        
-        <!-- SIMPLE CLOSE BUTTON - exactly like your other modals -->
         <button class="close-button" data-close aria-label="Close modal" type="button">
             <span aria-hidden="true">&times;</span>
         </button>

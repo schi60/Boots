@@ -162,19 +162,7 @@
             <p>No recipe found.</p>
         {% endif %}
         
-        <!-- CLUE: Henderson's Lie -->
-        <div class="clue-box {% if 'henderson_lie' in session.get('collected_clues', []) %}clue-collected{% endif %}">
-            <h5>🔍 INVESTIGATION NOTE: HENDERSON'S LIE</h5>
-            <p>Mrs. Henderson's church choir was cancelled yesterday. Her alibi doesn't exist. Her son was caught embezzling $50,000 - Reginald was pressing charges next week.</p>
-            
-            {% if 'henderson_lie' in session.get('collected_clues', []) %}
-            <button class="button success tiny" disabled>✓ Clue Already Recorded</button>
-            {% else %}
-            <form action="/collect-clue/henderson_lie" method="post">
-                <button type="submit" class="button alert tiny">📝 Record This Clue</button>
-            </form>
-            {% endif %}
-        </div>
+        <!-- CLUE: -->
         
         <button class="close-button" data-close aria-label="Close modal" type="button">
             <span aria-hidden="true">&times;</span>
@@ -190,19 +178,7 @@
             <p>No holiday found for this date.</p>
         {% endif %}
         
-        <!-- CLUE: Butler's Theft -->
-        <div class="clue-box {% if 'butler_theft' in session.get('collected_clues', []) %}clue-collected{% endif %}">
-            <h5>🔍 INVESTIGATION NOTE: BUTLER'S THEFT</h5>
-            <p>James wasn't just being fired. Reginald discovered James sold $1.2M in art, replacing them with forgeries. The cut on James's hand matches Reginald's ring pattern.</p>
-            
-            {% if 'butler_theft' in session.get('collected_clues', []) %}
-            <button class="button success tiny" disabled>✓ Clue Already Recorded</button>
-            {% else %}
-            <form action="/collect-clue/butler_theft" method="post">
-                <button type="submit" class="button alert tiny">📝 Record This Clue</button>
-            </form>
-            {% endif %}
-        </div>
+        <!-- CLUE: -->
         
         <button class="close-button" data-close aria-label="Close modal" type="button">
             <span aria-hidden="true">&times;</span>
