@@ -201,7 +201,7 @@ def submit():
             'rival': "Wrong! Dr. Finch wanted the dagger, but museum cameras confirm his alibi."
         }
         flash(f"{wrong_messages.get(murderer, 'Wrong answer')} All clues have been cleared. Start over.", 'error')
-        return render_template('finalAccusation.html', correct=False, clues=[])
+        return render_template('startPage.html', correct=False, clues=[])
 
 if __name__ == '__main__':
     app.run(debug=True)
