@@ -89,15 +89,6 @@
             background: #34495e;
         }
 
-        .progress-info {
-            text-align: center;
-            margin: 20px auto;
-            max-width: 600px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-        }
-
         .suspect-list {
             list-style: none;
             padding-left: 0;
@@ -147,6 +138,7 @@
         <h1 class="fancy-font title-large">HOME SWEET HOME</h1>
 
         {% if session['username'] %}
+
             <!-- Case Info Button -->
             <button class="case-button" data-open="case-modal">
                 <i class="fi-book"></i> View Case File
