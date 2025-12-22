@@ -167,7 +167,7 @@
             <h5>🔍 INVESTIGATION NOTE: HENDERSON'S LIE</h5>
             <p>Mrs. Henderson's church choir was cancelled yesterday. Her alibi doesn't exist. Her son was caught embezzling $50,000 - Reginald was pressing charges next week.</p>
             
-            {% if 'henderson_lie' in session.get('collectedclues', []) %}
+            {% if 'henderson_lie' in session.get('collectedClues', []) %}
             <button class="button success tiny" disabled>✓ Clue Already Recorded</button>
             {% else %}
             <form action="/clue/henderson_lie" method="post">
