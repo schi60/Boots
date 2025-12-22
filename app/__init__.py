@@ -15,7 +15,7 @@ app.register_blueprint(auth.bp)
 #allowed endpoints
 @app.before_request
 def check_authentification():
-    allowedEndpoints = ['static', 'startPage_get', 'auth.login_get', 'auth.login_post', 'auth.signup_get', 'auth.signup_post']
+    allowedEndpoints = ['static', 'startPage_get', 'auth.login_get', 'auth.login_post', 'auth.signup_get', 'auth.signup_post', 'collect_clue_route', 'reset_game_route', 'submit_final_answer','final_accusation']
     if 'username' not in session and request.endpoint not in allowedEndpoints:
         flash("Please log in to view our website", 'info')
         return redirect(url_for('auth.login_get'))
