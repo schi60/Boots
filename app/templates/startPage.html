@@ -147,21 +147,6 @@
         <h1 class="fancy-font title-large">HOME SWEET HOME</h1>
 
         {% if session['username'] %}
-        <!-- Progress Display -->
-        <div class="progress-info">
-            {% set clue_count = session.get('clues', [])|length %}
-            <h4>Investigation Progress</h4>
-            <div class="progress" role="progressbar" tabindex="0" aria-valuenow="{{ (clue_count / 6) * 100 }}" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-meter" style="width: {{ (clue_count / 6) * 100 }}%"></div>
-            </div>
-            <p>{{ clue_count }}/6 Clues Collected</p>
-            
-            {% if clue_count == 6 %}
-            <div class="callout success">
-                <p>✅ All clues collected! Go to the Front Lawn to solve the case.</p>
-            </div>
-            {% endif %}
-            
             <!-- Case Info Button -->
             <button class="case-button" data-open="case-modal">
                 <i class="fi-book"></i> View Case File
@@ -172,7 +157,6 @@
             <p>Please log in or sign up to play the murder mystery game.</p>
         </div>
         {% endif %}
-    </div>
 		
 			<!-- Restart Game Button (only shown to winners) -->
 		{% if won_game %}
