@@ -17,13 +17,14 @@ CREATE TABLE profiles (
     password TEXT
 );
 
-CREATE TABLE IF NOT EXISTS clues (
+DROP TABLE IF EXISTS clues;
+CREATE TABLE clues (
     username TEXT,
     clueID TEXT,
     PRIMARY KEY (username, clueID)
 );
-
 """)
+
 
 db.commit()
 db.close()

@@ -43,6 +43,7 @@ def logout_get():
     session.pop('correct', None)
     session.pop('success', None)
     session.pop('username', None)
+    session.modified = True
     flash('You have been logged out. Log in to view content', 'info')
     return redirect(url_for('startPage_get'))
 
@@ -56,8 +57,12 @@ def login_post():
         session.pop('accusationMade', None)
         session.pop('correct', None)
         session.pop('success', None)
-        
         session['username'] = username
+        collected = select_query(
+            "SELECT clueID FROM clues WHERE username=?", [username])
+        session['collectedClues'] = [c['clueID'] for c in collected]
+        session.modified = True
+
         return redirect(url_for('startPage_get'))
     else:
         flash('Invalid username or password.', 'error')
