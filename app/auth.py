@@ -22,11 +22,11 @@ def signup_post():
         return redirect(url_for('auth.signup_get'))
     hashed_password = generate_password_hash(password)
     insert_query("profiles", {"username": username, "password": hashed_password})
-    
-    # Clear any previous game progress when creating new account
-    session.pop('collected_clues', None)
-    session.pop('accusation_made', None)
-    session.pop('accusation_correct', None)
+
+    session.pop('collectedClues', None)
+    session.pop('accusationMade', None)
+    session.pop('correct', None)
+    session.pop('success', None)
     
     session['username'] = username
     flash('Sign up successful!', 'success')
@@ -38,10 +38,10 @@ def login_get():
 
 @bp.get('/logout')
 def logout_get():
-    # Clear game progress from session
-    session.pop('collected_clues', None)
-    session.pop('accusation_made', None)
-    session.pop('accusation_correct', None)
+    session.pop('collectedClues', None)
+    session.pop('accusationMade', None)
+    session.pop('correct', None)
+    session.pop('success', None)
     session.pop('username', None)
     flash('You have been logged out. Log in to view content', 'info')
     return redirect(url_for('startPage_get'))
@@ -52,10 +52,10 @@ def login_post():
     password = request.form.get('password')
     rows = select_query("SELECT * FROM profiles WHERE username=?", [username])
     if len(rows) != 0 and check_password_hash(rows[0]['password'], password):
-        # Clear any previous game progress when logging in as new user
-        session.pop('collected_clues', None)
-        session.pop('accusation_made', None)
-        session.pop('accusation_correct', None)
+        session.pop('collectedClues', None)
+        session.pop('accusationMade', None)
+        session.pop('correct', None)
+        session.pop('success', None)
         
         session['username'] = username
         return redirect(url_for('startPage_get'))
@@ -99,3 +99,4 @@ def update_password():
     general_query("UPDATE profiles SET password=? WHERE username=?;",(hashed_password, username))
     flash('Password updated successfully.', 'success')
     return redirect(url_for('settings_get'))
+
