@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!--
+    Boots
+    Sophia, Emaan, Jun Jie
+    P01
+    SoftDev 2025
+-->
+<html>
+<head>
+    <title>Final Accusation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .accusation-box {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 1500px;
+            margin: 50px auto;
+            border: 2px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .clue-list {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .clue-item {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .clue-item:last-child {
+            border-bottom: none;
+        }
+        
+        .suspect-option {
+            display: block;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .suspect-option:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .suspect-option input {
+            margin-right: 10px;
+        }
+        
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            z-index: 100;
+        }
+        
+        .back-link:hover {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+        
+        .progress-badge {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 100;
+        }
+		 
+        /* Scrollbar styling for clue list */
+        .clue-list::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .clue-list::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.2);
+            border-radius: 4px;
+        }
+        
+        .clue-list::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3);
+            border-radius: 4px;
+        }
+        
+        .clue-list::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.5);
+        }
+    </style>
+</head>
+<body>
+    <a href="/lawn" class="back-link"> ← Back to Lawn</a>
+    
+    <!-- Clue counter -->
+    <div class="progress-badge">
+        🔍 Clues: {{ session.get('collected_clues', [])|length }}/6
+    </div>
+    
+    
+    <div class="accusation-box">
+        <h1 class="text-center">⚖️ FINAL ACCUSATION</h1>
+        <p class="text-center">You've collected all 6 clues. Who killed Reginald Vanderbilt?</p>
+        
+        <hr>
+        
+			<!-- Display collected clues -->
+			<h4>📋 Your Collected Clues:</h4>
+			<div class="clue-list">
+			    {% for clue_id in session.get('collected_clues', []) %}
+			    <div class="clue-item">
+			        {% if clue_id == 'miles_alibi' %}
+			        ✓ <strong>Miles's Alibi:</strong> Security logs show Miles went to the study, not to see Reginald. He was searching for something. Casino cameras show him leaving at 8:15 PM, not 11:00 PM as claimed.
+			        {% elif clue_id == 'finch_emails' %}
+			        ✓ <strong>Finch's Obsession:</strong> Dr. Finch sent 17 emails about the Medici dagger this month. Final email: "This is your last chance to sell it willingly." Museum meeting ended at 7:30 PM - he had time to get here.
+			        {% elif clue_id == 'henderson_lie' %}
+			        ✓ <strong>Henderson's Lie:</strong> Mrs. Henderson's church choir was cancelled yesterday. Her alibi doesn't exist. Her son was caught embezzling $50,000 - Reginald was pressing charges next week.
+			        {% elif clue_id == 'butler_theft' %}
+			        ✓ <strong>Butler's Theft:</strong> James wasn't just being fired. Reginald discovered James sold $1.2M in art, replacing them with forgeries. The cut on James's hand matches Reginald's ring pattern.
+			        {% elif clue_id == 'vivian_scheme' %}
+			        ✓ <strong>Vivian's Scheme:</strong> 60% of Vivian's sold artworks are fakes. She's part of a ring that insures forgeries, then "steals" them for insurance payouts. Her Uber shows drop-off at 7:25 PM but no pick-up recorded.
+			        {% elif clue_id == 'weapon_found' %}
+			        ✓ <strong>Weapon Discovery:</strong> Murder weapon found in compost bin: kitchen knife, not the missing dagger. Forensics: Stabbed at 8:45 PM, then dagger taken to stage robbery. Time of death matches.
+			        {% else %}
+			        ✓ Unknown clue
+			        {% endif %}
+			    </div>
+			    {% endfor %}
+			</div>
+        
+        <hr>
+		 
+        
+        <!-- Simple accusation form -->
+        <form action="/submit-final-answer" method="post">
+            <h4>Who is the murderer?</h4>
+            
+            <label class="suspect-option">
+                <input type="radio" name="murderer" value="butler" required>
+                James Worthington (The Butler)
+            </label>
+            
+            <label class="suspect-option">
+                <input type="radio" name="murderer" value="dealer">
+                Vivian Lacroix (Art Dealer)
+            </label>
+            
+            <label class="suspect-option">
+                <input type="radio" name="murderer" value="nephew">
+                Miles Vanderbilt (The Nephew)
+            </label>
+            
+            <label class="suspect-option">
+                <input type="radio" name="murderer" value="cook">
+                Mrs. Henderson (The Cook)
+            </label>
+            
+            <label class="suspect-option">
+                <input type="radio" name="murderer" value="rival">
+                Dr. Alistair Finch (Rival Collector)
+            </label>
+            
+            <button type="submit" class="button alert" style="margin-top: 30px;">
+                🔴 SUBMIT FINAL ANSWER
+            </button>
+        </form>
+        
+        <p class="text-center" style="margin-top: 20px; font-size: 0.9rem; color: #CCC;">
+            <em>Choose carefully. Wrong answer = restart the case.</em>
+        </p>
+    </div>
+    
+    <script>
+        $(document).foundation();
+    </script>
+</body>
+</html>

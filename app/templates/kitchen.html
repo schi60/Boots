@@ -94,18 +94,37 @@
             margin: 10px 0;
             display: block;
         }
+        
         .ingredient-list {
             columns: 2;
             margin: 10px 10;
         }
+        
         .recipe-image-container {
             text-align: center;
             margin: 15px 0;
+        }
+        
+        .clue-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #2c3e50;
+        }
+        
+        .clue-collected {
+            background: #d4edda;
+            border-left-color: #28a745;
         }
     </style>
 </head>
 <body>
     <a href="/map"> ← Return to Map </a>
+
+	    <div class="progress-badge" style="position: fixed; top: 20px; right: 20px; background: rgba(0,0,0,0.8); color: white; padding: 10px 15px; border-radius: 20px; font-weight: bold; z-index: 100;">
+        🔍 Clues: {{ session.get('collected_clues', [])|length }}/6
+    </div>
     
     <h1 style="color: white; text-shadow: 2px 2px 4px #000; text-align: center; margin-top: 20px;">🍳 Kitchen</h1>
 
@@ -142,6 +161,21 @@
         {% else %}
             <p>No recipe found.</p>
         {% endif %}
+        
+        <!-- CLUE: Henderson's Lie -->
+        <div class="clue-box {% if 'henderson_lie' in session.get('collected_clues', []) %}clue-collected{% endif %}">
+            <h5>🔍 INVESTIGATION NOTE: HENDERSON'S LIE</h5>
+            <p>Mrs. Henderson's church choir was cancelled yesterday. Her alibi doesn't exist. Her son was caught embezzling $50,000 - Reginald was pressing charges next week.</p>
+            
+            {% if 'henderson_lie' in session.get('collected_clues', []) %}
+            <button class="button success tiny" disabled>✓ Clue Already Recorded</button>
+            {% else %}
+            <form action="/collect-clue/henderson_lie" method="post">
+                <button type="submit" class="button alert tiny">📝 Record This Clue</button>
+            </form>
+            {% endif %}
+        </div>
+        
         <button class="close-button" data-close aria-label="Close modal" type="button">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -155,6 +189,21 @@
         {% else %}
             <p>No holiday found for this date.</p>
         {% endif %}
+        
+        <!-- CLUE: Butler's Theft -->
+        <div class="clue-box {% if 'butler_theft' in session.get('collected_clues', []) %}clue-collected{% endif %}">
+            <h5>🔍 INVESTIGATION NOTE: BUTLER'S THEFT</h5>
+            <p>James wasn't just being fired. Reginald discovered James sold $1.2M in art, replacing them with forgeries. The cut on James's hand matches Reginald's ring pattern.</p>
+            
+            {% if 'butler_theft' in session.get('collected_clues', []) %}
+            <button class="button success tiny" disabled>✓ Clue Already Recorded</button>
+            {% else %}
+            <form action="/collect-clue/butler_theft" method="post">
+                <button type="submit" class="button alert tiny">📝 Record This Clue</button>
+            </form>
+            {% endif %}
+        </div>
+        
         <button class="close-button" data-close aria-label="Close modal" type="button">
             <span aria-hidden="true">&times;</span>
         </button>
