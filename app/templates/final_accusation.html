@@ -11,10 +11,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
     <style>
         body {
-            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
             color: white;
-            min-height: 100vh;
             padding: 20px;
+            background-image: url('/static/killer.png');
+            background-size: cover;          /* scales to fill screen */
+            background-position: center;     /* keeps it centered */
+            background-repeat: no-repeat;
+            background-attachment: fixed;    /* prevents stretching on scroll */
+            min-height: 100vh;               /* allows page to grow */
+            margin: 0;
             position: relative;
         }
         
@@ -25,11 +30,11 @@
             max-width: 1500px;
             margin: 50px auto;
             border: 2px solid rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(2px);
         }
         
         .clue-list {
-            background: rgba(0,0,0,0.3);
+            background: rgba(141, 132, 132, 0.3);
             padding: 20px;
             border-radius: 10px;
             margin: 20px 0;
@@ -47,6 +52,7 @@
         }
         
         .suspect-option {
+            color: white;
             display: block;
             padding: 15px;
             background: rgba(255,255,255,0.1);

@@ -18,6 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/js/foundation.min.js" crossorigin="anonymous"></script>
     <style>
         body {
+            color: white;
             padding: 20px;
 
             .flashes {
@@ -43,6 +44,14 @@
                 color: #0066cc;
                 border: 1px solid #cce5ff;
             }
+            padding: 20px;
+            background-image: url('/static/woodenBackground.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            position: relative;
         }
 		         /* Return link styling */
         a {
@@ -66,7 +75,7 @@
 <body>
 	  <a href="/"> ← Go to Home  </a>
      <a href="/map"> ← Go to Map  </a>
-
+<br><br>
     <h1>Settings</h1>
     <h5>Current username: {{ username }}</h5>
     <p1>Update Username</p1>
