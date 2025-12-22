@@ -22,18 +22,21 @@ def select_query(query_string, parameters=()):
     c.close()
     db.commit()
     return out_array
-
+    
 def insert_query(table, data):
     c = db.cursor()
-    placeholder = ["?"] * len(data)
-    c.execute(f"INSERT INTO {table} {tuple(data.keys())} VALUES ({', '.join(placeholder)}) RETURNING *;", tuple(data.values()))
-    row = c.fetchall()
-    output = dict()
-    for col in range(len(row[0])):
-        output.update({c.description[col][0]: row[0][col]}) 
+    keys = ", ".join(data.keys())
+    placeholders = ", ".join(["?"] * len(data))
+    values = tuple(data.values())
+    c.execute(f"INSERT INTO {table} ({keys}) VALUES ({placeholders})", values)
+    
+    # Return inserted data as dict
+    output = {k: v for k, v in data.items()}
+    
     c.close()
     db.commit()
     return output
+
 
 def general_query(query_string, parameters=()):
     c = db.cursor()
