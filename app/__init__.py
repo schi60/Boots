@@ -151,11 +151,15 @@ def allClues():
 
 #game reset
 def reset():
+    username = session.get('username')
+    if username:
+        general_query("DELETE FROM clues WHERE username=?", [username])
     session.pop('collectedClues', None)
     session.pop('accusationMade', None)
     session.pop('correct', None)
-    session.pop('success', None)  
+    session.pop('success', None)
     session.modified = True
+
 
 @app.get('/reset')
 def reset_get():
