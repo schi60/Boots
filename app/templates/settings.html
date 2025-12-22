@@ -44,10 +44,28 @@
                 border: 1px solid #cce5ff;
             }
         }
+		         /* Return link styling */
+        a {
+            position: relative;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            z-index: 100;
+        }
+        
+        a:hover {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+		 
     </style>
 </head>
 <body>
-    <a href="/map"> ← Return to Map </a> ✦
+	  <a href="/"> ← Go to Home  </a>
+     <a href="/map"> ← Go to Map  </a>
 
     <h1>Settings</h1>
     <h5>Current username: {{ username }}</h5>
