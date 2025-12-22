@@ -126,10 +126,12 @@ def sign_up():
     return render_template('/auth/register.html')
 
 #collecting clues 
-def collectClue(clueID):
+def collectClue(username, clueID):
     if 'collectedClues' not in session:
-        session['collectedClues'] = []
-    if clueID not in session['collectedClues']:
+        session['collectedClues'] = []t
+    existing = select_query("SELECT * FROM clues WHERE username=? AND clueID=?", [username, clueID])  
+    if not existing:
+        insert_query("clues", {"username": username, "clueID": clueID})
         session['collectedClues'].append(clueID)
         session.modified = True
         return True
@@ -140,7 +142,7 @@ def clue(clueID):
     if 'username' not in session:
         flash('Please log in first.', 'error')
         return redirect(url_for('auth.login_get'))
-    collectClue(clueID)
+    collectClue(session['username'], clueID)
     return redirect(request.referrer or url_for('map_get'))
 
 #all clues have been collected
