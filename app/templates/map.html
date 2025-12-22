@@ -77,7 +77,10 @@
         <a href="/settings"><i class="fi-widget"></i> Settings</a>
         <a href="/auth/logout"><i class="fi-power"></i> Logout</a>
     </div>
-	
+
+		<div style="position: fixed; top: 90px; left: 20px; background: rgba(0,0,0,0.8); color: white; padding: 10px 15px; border-radius: 20px; font-weight: bold; z-index: 100;">
+        🔍 Clues: {{ session.get('collected_clues', [])|length }}/6
+    </div>
     
     <h1 style="color: white; text-shadow: 2px 2px 4px #000;">🏠 House Map</h1>
     
