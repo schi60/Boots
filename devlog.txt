@@ -137,3 +137,33 @@ emaanA --2025-12-17 15:10
 
 emaanA --2025-12-17 10:40
 - fixed restricting content to logged in users only
+
+emaanA --2025-12-18 11:00
+- restricting content (again) to logged in users only
+
+sophiaC --2025-12-18 11:00
+- creating navigation for map html into rooms
+
+junjieL --2025-12-18 11:00
+- adding base clues  
+
+junjieL --2025-12-19 11:00 
+- adding static folder with images
+
+emaanA --2025-12-19 11:00
+- messing around with cacheing API
+
+sophiaC --2025-12-21 23:00
+- added background images + hotspots
+- created finalAccusation.HTML
+- links
+
+junjieL --2025-12-21 23:00
+- adding background images
+- moved button locations 
+- added images to finalAccusation
+
+emaanA --2025-12-21 23:00
+- collecting clues
+- stored clues in database for each username
+- fixing html to align with clue storage

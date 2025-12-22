@@ -128,7 +128,7 @@ def sign_up():
 #collecting clues 
 def collectClue(username, clueID):
     if 'collectedClues' not in session:
-        session['collectedClues'] = []t
+        session['collectedClues'] = []
     existing = select_query("SELECT * FROM clues WHERE username=? AND clueID=?", [username, clueID])  
     if not existing:
         insert_query("clues", {"username": username, "clueID": clueID})

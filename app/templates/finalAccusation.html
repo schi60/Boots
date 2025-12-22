@@ -125,7 +125,7 @@
 
     <!-- Clue counter -->
     <div class="progress-badge">
-        🔍 Clues: {{ session.get('collected_clues', [])|length }}/6
+        🔍 Clues: {{ session.get('collectedClues', [])|length }}/6
     </div>
 
 
@@ -138,19 +138,19 @@
 			<!-- Display collected clues -->
 			<h4>📋 Your Collected Clues:</h4>
 			<div class="clue-list">
-			    {% for clue_id in session.get('collected_clues', []) %}
+			    {% for clueID in session.get('collectedClues', []) %}
 			    <div class="clue-item">
-			        {% if clue_id == 'miles_alibi' %}
+			        {% if clueID == 'miles_alibi' %}
 			        ✓ <strong>Miles's Alibi:</strong> Security logs show Miles went to the study, not to see Reginald. He was searching for something. Casino cameras show him leaving at 8:15 PM, not 11:00 PM as claimed.
-			        {% elif clue_id == 'finch_emails' %}
+			        {% elif clueID == 'finch_emails' %}
 			        ✓ <strong>Finch's Obsession:</strong> Dr. Finch sent 17 emails about the Medici dagger this month. Final email: "This is your last chance to sell it willingly." Museum meeting ended at 7:30 PM - he had time to get here.
-			        {% elif clue_id == 'henderson_lie' %}
+			        {% elif clueID == 'henderson_lie' %}
 			        ✓ <strong>Henderson's Lie:</strong> Mrs. Henderson's church choir was cancelled yesterday. Her alibi doesn't exist. Her son was caught embezzling $50,000 - Reginald was pressing charges next week.
-			        {% elif clue_id == 'butler_theft' %}
+			        {% elif clueID == 'butler_theft' %}
 			        ✓ <strong>Butler's Theft:</strong> James wasn't just being fired. Reginald discovered James sold $1.2M in art, replacing them with forgeries. The cut on James's hand matches Reginald's ring pattern.
-			        {% elif clue_id == 'vivian_scheme' %}
+			        {% elif clueID == 'vivian_scheme' %}
 			        ✓ <strong>Vivian's Scheme:</strong> 60% of Vivian's sold artworks are fakes. She's part of a ring that insures forgeries, then "steals" them for insurance payouts. Her Uber shows drop-off at 7:25 PM but no pick-up recorded.
-			        {% elif clue_id == 'weapon_found' %}
+			        {% elif clueID == 'weapon_found' %}
 			        ✓ <strong>Weapon Discovery:</strong> Murder weapon found in compost bin: kitchen knife, not the missing dagger. Forensics: Stabbed at 8:45 PM, then dagger taken to stage robbery. Time of death matches.
 			        {% else %}
 			        ✓ Unknown clue
@@ -163,7 +163,8 @@
 
 
         <!-- Simple accusation form -->
-        <form action="/submit-final-answer" method="post">
+        <form action="/submit
+        " method="post">
             <h4>Who is the murderer?</h4>
 
             <label class="suspect-option">
