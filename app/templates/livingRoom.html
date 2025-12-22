@@ -123,7 +123,7 @@
     <a href="/map"> ← Return to Map </a>
 
 	    <div class="progress-badge" style="position: fixed; top: 20px; right: 20px; background: rgba(0,0,0,0.8); color: white; padding: 10px 15px; border-radius: 20px; font-weight: bold; z-index: 100;">
-        🔍 Clues: {{ session.get('collected_clues', [])|length }}/6
+        🔍 Clues: {{ session.get('collectedClues', [])|length }}/6
     </div>
 
     <h1 style="color: white; text-shadow: 2px 2px 4px #000; text-align: center; margin-top: 20px;">🛋️ Living Room</h1>
@@ -143,14 +143,14 @@
         {% endif %}
 
         <!-- CLUE  -->
-        <div class="clue-box {% if 'weapon_found' in session.get('collected_clues', []) %}clue-collected{% endif %}">
+        <div class="clue-box {% if 'weapon_found' in session.get('collectedClues', []) %}clue-collected{% endif %}">
             <h5>🔍 INVESTIGATION NOTE: WEAPON DISCOVERY</h5>
             <p>Murder weapon found in compost bin: kitchen knife, not the missing dagger. Forensics: Stabbed at 8:45 PM, then dagger taken to stage robbery. Time of death matches.</p>
 
-            {% if 'weapon_found' in session.get('collected_clues', []) %}
+            {% if 'weapon_found' in session.get('collectedClues', []) %}
             <button class="button success tiny" disabled>✓ Clue Already Recorded</button>
             {% else %}
-            <form action="/collect-clue/weapon_found" method="post">
+            <form action="/clue/weapon_found" method="post">
                 <button type="submit" class="button alert tiny">📝 Record This Clue</button>
             </form>
             {% endif %}
@@ -181,14 +181,14 @@
         {% endif %}
 
         <!-- CLUE -->
-        <div class="clue-box {% if 'vivian_scheme' in session.get('collected_clues', []) %}clue-collected{% endif %}">
+        <div class="clue-box {% if 'vivian_scheme' in session.get('collectedClues', []) %}clue-collected{% endif %}">
             <h5>🔍 INVESTIGATION NOTE: VIVIAN'S SCHEME</h5>
             <p>60% of Vivian's sold artworks are fakes. She's part of a ring that insures forgeries, then "steals" them for insurance payouts. Her Uber shows drop-off at 7:25 PM but no pick-up recorded.</p>
             
-            {% if 'vivian_scheme' in session.get('collected_clues', []) %}
+            {% if 'vivian_scheme' in session.get('collectedClues', []) %}
             <button class="button success tiny" disabled>✓ Clue Already Recorded</button>
             {% else %}
-            <form action="/collect-clue/vivian_scheme" method="post">
+            <form action="/clue/vivian_scheme" method="post">
                 <button type="submit" class="button alert tiny">📝 Record This Clue</button>
             </form>
             {% endif %}
